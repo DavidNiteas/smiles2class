@@ -46,7 +46,7 @@ probs, meta = clf.predict(["CCO", "c1ccccc1"], return_meta=True)
 - 非法 SMILES 对应行 `status="invalid"`，概率为 `NaN`；
 - 降级 2D 的行 `status="degraded_2d"`（特征化层给出）。
 
-> 副模型的 426 个 predictor 顺序执行；当前 autogluon 版本的多线程 `predict_proba` 会阻塞，`--vice-workers` 仅保留兼容。
+> 副模型的 426 个 predictor 默认顺序执行；`--vice-workers > 1` 可选，但在机械硬盘上实测无明显加速，且可能受 I/O 抖动影响。
 
 ## CLI
 
