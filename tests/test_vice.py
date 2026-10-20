@@ -75,3 +75,27 @@ def test_vice_full_golden(model_dir):
     )
     assert [meta["status"] for meta in metas] == ["ok"] * len(smiles)
     np.testing.assert_allclose(probs.to_numpy(), data["probs"], rtol=0, atol=1e-9)
+
+
+def test_vice_eager_load_matches_lazy(model_dir):
+    from autogluon.tabular import TabularPredictor
+
+    n = 5
+    predictors = [
+        TabularPredictor.load(str(model_dir / "vice_model" / str(i)), verbosity=0)
+        for i in range(n)
+    ]
+    labels = [f"class_{i}" for i in range(n)]
+    embeds = np.zeros((1, 512), dtype=np.float64)
+
+    lazy = ViceModel(predictors, labels, load_mode="lazy").predict(embeds, workers=1)
+    eager = ViceModel(predictors, labels, load_mode="eager").predict(embeds, workers=1)
+    assert eager.shape == (1, n)
+    np.testing.assert_array_equal(eager, lazy)
+
+
+def test_vice_invalid_load_mode():
+    import pytest
+
+    with pytest.raises(ValueError):
+        ViceModel([], [], load_mode="nope")
