@@ -5,7 +5,10 @@ SMILES → 分子类别概率。当前提供两种独立实现：
 - **main**：主模型（UniMol encoder + 426 个类查询解码器），输出 `(N, 426)` 概率与 512 维 embedding；
 - **vice**：副模型（426 个 AutoGluon 逐类二分类器，输入为主模型的 embedding），输出 `(N, 426)` 概率。
 
-> 两种实现各自返回原始概率；**不在本库内做概率融合**。融合属于使用方的工程决策。
+## 文档 / Documentation
+
+- [中文文档](docs/zh/index.md) · [English documentation](docs/en/index.md)
+- [完整索引](docs/README.md)
 
 ## 安装
 
@@ -58,7 +61,7 @@ smiles2class predict \
   --output preds.csv
 ```
 
-## 文档
+## 开发文档
 
 - 设计路线：`_dev/设计路线.md`
 - 工单：`_dev/仓库建立/`、`_dev/主模型移植/`、`_dev/副模型移植/`

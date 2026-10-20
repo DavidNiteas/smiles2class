@@ -1,4 +1,4 @@
-"""Public classifiers: main and vice (no fusion)."""
+"""Public classifiers: main and vice."""
 
 from __future__ import annotations
 

@@ -5,8 +5,6 @@ Two independent implementations are exposed:
 - :class:`MainClassifier` — UniMol encoder + 426 class-query decoder;
 - :class:`ViceClassifier` — 426 per-class AutoGluon predictors over the main
   model embedding.
-
-Probability fusion is intentionally **out of scope**.
 """
 
 from .classifier import MainClassifier, ViceClassifier
