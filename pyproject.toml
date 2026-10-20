@@ -43,9 +43,16 @@ include = [
   "/src",
   "/tests",
   "/docs",
+  "/training",
+  "/pipelines",
+  "/evaluation",
+  "/benchmarks",
   "/README.md",
   "/CHANGELOG.md",
   "/LICENSE",
+]
+exclude = [
+  "/_dev",
 ]
 
 [tool.pytest.ini_options]
