@@ -6,32 +6,18 @@ import json
 import warnings
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from typing import Literal
 
 import numpy as np
 import pandas as pd
 
-LoadMode = Literal["lazy", "eager"]
-_LOAD_MODES = ("lazy", "eager")
-
 
 class ViceModel:
-    def __init__(self, predictors, labels, load_mode: LoadMode = "lazy"):
-        if load_mode not in _LOAD_MODES:
-            raise ValueError(f"load_mode must be one of {_LOAD_MODES}, got {load_mode!r}")
+    def __init__(self, predictors, labels):
         self.predictors = predictors
         self.labels = labels
-        self.load_mode = load_mode
-        if load_mode == "eager":
-            self.warmup()
 
     @classmethod
-    def from_pretrained(
-        cls,
-        model_path: str | Path,
-        label_path: str | Path | None = None,
-        load_mode: LoadMode = "lazy",
-    ):
+    def from_pretrained(cls, model_path: str | Path, label_path: str | Path | None = None):
         from autogluon.tabular import TabularPredictor
 
         model_path = Path(model_path)
@@ -45,7 +31,7 @@ class ViceModel:
                 TabularPredictor.load(str(model_path / str(i)), verbosity=0)
                 for i in range(len(labels))
             ]
-        return cls(predictors, labels, load_mode=load_mode)
+        return cls(predictors, labels)
 
     def _inputs(self, mol_embeds: np.ndarray):
         from autogluon.tabular import TabularDataset
@@ -62,25 +48,6 @@ class ViceModel:
             return np.asarray(
                 predictor.predict_proba(inputs, as_multiclass=False), dtype=np.float64
             )
-
-    def warmup(self) -> None:
-        """Persist every predictor's models in memory (AutoGluon ``persist``).
-
-        Without this, AutoGluon reloads the model files from disk on **every**
-        ``predict_proba`` call.  ``persist`` keeps them resident, trading RAM
-        for inference latency.
-        """
-        for predictor in self.predictors:
-            with warnings.catch_warnings():
-                warnings.simplefilter("ignore")
-                predictor.persist(models="best", with_ancestors=True)
-
-    def release(self) -> None:
-        """Drop persisted models (free memory); the next predict reloads them."""
-        for predictor in self.predictors:
-            with warnings.catch_warnings():
-                warnings.simplefilter("ignore")
-                predictor.unpersist()
 
     def predict(self, mol_embeds: np.ndarray, workers: int = 1) -> np.ndarray:
         """Return ``(N, 426)`` per-class positive probabilities.

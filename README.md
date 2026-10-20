@@ -38,9 +38,7 @@ probs, meta = clf.predict(["CCO", "c1ccccc1"], return_meta=True)
 ```python
 from smiles2class import ViceClassifier
 
-# load_mode="lazy"（默认）：首次预测时才加载 426 个 predictor 的模型文件
-# load_mode="eager"：初始化时 persist 全部 predictor（实测对 426 全量无稳态收益，见 docs）
-clf = ViceClassifier.from_pretrained("<model_dir>", load_mode="lazy")
+clf = ViceClassifier.from_pretrained("<model_dir>")
 probs, meta = clf.predict(["CCO", "c1ccccc1"], return_meta=True)
 ```
 

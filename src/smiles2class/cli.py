@@ -24,9 +24,6 @@ def predict(
     device: str = typer.Option("cpu", "--device", help="cpu | cuda"),
     batch_size: int = typer.Option(64, "--batch-size"),
     vice_workers: int = typer.Option(1, "--vice-workers"),
-    vice_load_mode: str = typer.Option(
-        "lazy", "--vice-load-mode", help="lazy | eager (eager preloads 426 predictors)"
-    ),
 ):
     """Predict per-class probabilities for every row of a CSV."""
     if model not in ("main", "vice"):
@@ -46,9 +43,7 @@ def predict(
             return_meta=True,
         )
     else:
-        clf = ViceClassifier.from_pretrained(
-            model_path, device=device, load_mode=vice_load_mode
-        )
+        clf = ViceClassifier.from_pretrained(model_path, device=device)
         probs, metas = clf.predict(
             smiles,
             workers=workers,

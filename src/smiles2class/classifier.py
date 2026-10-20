@@ -92,15 +92,10 @@ class ViceClassifier:
         model_dir: str | Path,
         device: str = "cpu",
         labels: list[str] | None = None,
-        load_mode: str = "lazy",
     ) -> "ViceClassifier":
         model_dir = resolve_model_dir(model_dir)
         main = MainClassifier.from_pretrained(model_dir, device=device, labels=labels)
-        vice = ViceModel.from_pretrained(
-            model_dir / "vice_model",
-            model_dir / "label_map.json",
-            load_mode=load_mode,
-        )
+        vice = ViceModel.from_pretrained(model_dir / "vice_model", model_dir / "label_map.json")
         return cls(main, vice)
 
     def predict(
