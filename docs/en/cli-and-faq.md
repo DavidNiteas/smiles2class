@@ -48,7 +48,7 @@ No. Each row is featurized and predicted independently.
 
 ### Why is the vice model so slow?
 
-It evaluates 426 AutoGluon ensembles sequentially, about 47 s per call at steady state; cold start on an HDD is slower. Use SSD/NVMe or pre-warm.
+It evaluates 426 AutoGluon ensembles sequentially, about 47 s per prediction; the first call may be slower. Put the model directory on SSD or pre-warm it at service start.
 
 ### Can it use a GPU?
 
@@ -62,8 +62,7 @@ No. The 426 outputs are independent binary probabilities and do not sum to one; 
 
 ```shell
 pip install -e ".[dev,vice]"
-pytest tests/ -q                  # skips the full vice golden by default
-S2C_FULL_VICE=1 pytest tests/ -q  # includes the 426-predictor golden
+pytest tests/ -q
 ```
 
 Tests read the model directory from `S2C_MODEL_DIR`; if unset they use `<repo>/../model/uni_classify` and skip when it is absent.

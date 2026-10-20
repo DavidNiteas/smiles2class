@@ -51,7 +51,7 @@ probs, metas = clf.predict(
 ```
 
 - Runs the main model first to get `(N, 512)` embeddings, then the 426 predictors;
-- `vice_workers` defaults to `1` (sequential); `>1` enables a thread pool, which showed no benefit on a rotational HDD;
+- `vice_workers` defaults to `1` (sequential); larger values are allowed but not guaranteed to be faster;
 - The output is `(N, 426)`; it is **not** a fused result.
 
 ## Row alignment and edge cases

@@ -50,8 +50,8 @@ probs, metas = clf.predict(
 )
 ```
 
-- 内部先调用主模型拿到 `(N, 512)` embedding，再走 426 个 predictor；
-- `vice_workers` 默认 `1`（顺序执行）；`>1` 会启用线程池，但在机械盘上实测无明显收益；
+- 先调用主模型拿到 `(N, 512)` embedding，再走 426 个 predictor；
+- `vice_workers` 默认 `1`（顺序执行）；更大的值不保证更快；
 - 输出同样是 `(N, 426)`，逐类概率。
 
 ## 行对齐与边界

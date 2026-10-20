@@ -65,7 +65,7 @@ probs, meta = clf.predict(["CCO"], return_meta=True)
 print(probs.shape)                     # (1, 426)
 ```
 
-The vice classifier runs the main model first to obtain embeddings, then walks the 426 predictors. On a rotational HDD the first prediction can take on the order of a minute.
+The vice classifier runs the main model first to obtain embeddings, then walks the 426 predictors. The first prediction can take a while.
 
 ## Command line
 

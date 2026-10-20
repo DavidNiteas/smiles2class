@@ -49,7 +49,7 @@ probs, meta = clf.predict(["CCO", "c1ccccc1"], return_meta=True)
 - 非法 SMILES 对应行 `status="invalid"`，概率为 `NaN`；
 - 降级 2D 的行 `status="degraded_2d"`（特征化层给出）。
 
-> 副模型的 426 个 predictor 默认顺序执行；`--vice-workers > 1` 可选，但在机械硬盘上实测无明显加速，且可能受 I/O 抖动影响。
+> 副模型的 426 个 predictor 默认顺序执行；更大的 `--vice-workers` 不保证更快。
 
 ## CLI
 
@@ -60,12 +60,3 @@ smiles2class predict \
   --input-csv input.csv \
   --output preds.csv
 ```
-
-## 开发文档
-
-- 设计路线：`_dev/设计路线.md`
-- 工单：`_dev/仓库建立/`、`_dev/主模型移植/`、`_dev/副模型移植/`
-
-## 许可
-
-MIT（代码）。模型文件与训练数据的许可另行确认。

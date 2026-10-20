@@ -48,7 +48,7 @@ SMILES 无法解析。`status="invalid"`，该行概率全为 `NaN`，其它行�
 
 ### 副模型为什么这么慢？
 
-426 个 AutoGluon 集成逐个推理，稳态约 47 秒/次；冷启动在机械盘上更久。建议 SSD/NVMe 或预热。
+426 个 AutoGluon 集成逐个推理，单次预测约 47 秒；首次调用可能更久。建议把模型目录放在 SSD 上，或在服务启动时预热。
 
 ### 能用 GPU 吗？
 
@@ -62,8 +62,7 @@ SMILES 无法解析。`status="invalid"`，该行概率全为 `NaN`，其它行�
 
 ```shell
 pip install -e ".[dev,vice]"
-pytest tests/ -q                 # 默认跳过全量副模型 golden
-S2C_FULL_VICE=1 pytest tests/ -q # 含 426 predictor golden
+pytest tests/ -q
 ```
 
 测试用 `S2C_MODEL_DIR` 指定模型目录；未设置时默认 `<repo>/../model/uni_classify`，不存在则自动跳过。

@@ -32,13 +32,13 @@ Loading uses `main_model/config.json` and `main_model/model.safetensors` with a 
 
 ## Performance and limits
 
-| Item | Measured |
+| Item | Reference |
 |---|---|
-| Main model, one molecule | ~75 ms (CPU) |
-| Vice, 426 predictors, steady state | **~47 s per call** (one molecule, sequential) |
-| Vice cold start (HDD) | ~73 s for the first call |
-| Vice threading | no measurable benefit on a rotational HDD |
+| Main model, one molecule (CPU) | ~75 ms |
+| Vice, one prediction (CPU) | ~47 s |
+| Vice, first call | may be slower, depending on disk and cache |
+| Vice directory size | ~15 GB |
 
-- The vice bottleneck is compute across 426 ensembles, not disk reload; `persist` preloading showed no steady-state benefit and is not offered;
-- Put the 15 GB vice directory on SSD/NVMe or pre-warm it;
+- The main cost of the vice model is running 426 ensembles;
+- Put the vice directory on SSD/NVMe, or pre-warm it at service start;
 - Model files are not shipped with the repository; `from_pretrained` points at a local directory.

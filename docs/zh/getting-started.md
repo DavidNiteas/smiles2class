@@ -65,7 +65,7 @@ probs, meta = clf.predict(["CCO"], return_meta=True)
 print(probs.shape)                     # (1, 426)
 ```
 
-副模型内部会先跑主模型拿 embedding，再走 426 个 predictor；首次预测在机械硬盘上可能是一分钟级。
+副模型会先跑主模型拿 embedding，再走 426 个 predictor；首次预测可能较慢。
 
 ## 命令行
 

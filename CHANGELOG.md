@@ -4,7 +4,7 @@
 
 ### Added
 
-- `MainClassifier`：UniMol encoder + 426 类查询解码器，输出 `(N, 426)` 概率（内部同时给出 512 维 embedding）。
+- `MainClassifier`：UniMol encoder + 426 类查询解码器，输出 `(N, 426)` 概率（同时给出 512 维 embedding）。
 - `ViceClassifier`：复用主模型 embedding，走 426 个 AutoGluon 逐类 predictor，输出 `(N, 426)` 概率。
 - 行对齐：输出与输入等长保序；重复 SMILES 不折叠；非法 SMILES 该行全 `NaN` + `status="invalid"`。
 - CLI：`smiles2class predict --model main|vice`。
@@ -14,5 +14,5 @@
 
 ### Notes
 
-- 副模型 426 个 predictor 顺序执行；机械盘冷启动为分钟级。
+- 副模型 426 个 predictor 顺序执行；首次调用可能较慢。
 - 模型文件不随仓库分发，`from_pretrained` 指向本地模型目录。
