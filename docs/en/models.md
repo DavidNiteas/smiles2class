@@ -30,15 +30,16 @@ Loading uses `main_model/config.json` and `main_model/model.safetensors` with a 
 - Both implementations return **per-class independent probabilities**; there is no cross-class normalisation;
 - Main and vice were trained under different distributions (natural prevalence vs balanced sampling), so their probability scales differ.
 
-## Performance and limits
+## Runtime and limits
 
-| Item | Reference |
+| Item | Note |
 |---|---|
-| Main model, one molecule (CPU) | ~75 ms |
-| Vice, one prediction (CPU) | ~47 s |
-| Vice, first call | may be slower, depending on disk and cache |
-| Vice directory size | ~15 GB |
+| Main model | runs on CPU or GPU |
+| Vice model | 426 ensembles evaluated sequentially; the first call may be slow |
+| Vice directory | large; SSD/NVMe storage is recommended |
+| Model files | not shipped; `from_pretrained` points at a local directory |
 
-- The main cost of the vice model is running 426 ensembles;
-- Put the vice directory on SSD/NVMe, or pre-warm it at service start;
-- Model files are not shipped with the repository; `from_pretrained` points at a local directory.
+- The vice cost is dominated by the 426 ensembles;
+- Pre-warm at service start or use a local cache;
+- Public docs do not report benchmark conclusions; runtime depends on hardware,
+  model directory and input distribution.

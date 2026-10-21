@@ -5,7 +5,7 @@
 ## CLI
 
 ```shell
-smiles2class predict \
+smiles2class \
   --model main \
   --model-path <model_dir> \
   --input-csv input.csv \
@@ -48,7 +48,7 @@ SMILES 无法解析。`status="invalid"`，该行概率全为 `NaN`，其它行�
 
 ### 副模型为什么这么慢？
 
-426 个 AutoGluon 集成逐个推理，单次预测约 47 秒；首次调用可能更久。建议把模型目录放在 SSD 上，或在服务启动时预热。
+426 个 AutoGluon 集成逐个推理，单次预测可能较慢，取决于硬件、模型目录与缓存状态。建议把模型目录放在 SSD 上，或在服务启动时预热。
 
 ### 能用 GPU 吗？
 

@@ -70,7 +70,7 @@ The vice classifier runs the main model first to obtain embeddings, then walks t
 ## Command line
 
 ```shell
-smiles2class predict \
+smiles2class \
   --model main \
   --model-path <model_dir> \
   --input-csv input.csv \

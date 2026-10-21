@@ -70,7 +70,7 @@ print(probs.shape)                     # (1, 426)
 ## 命令行
 
 ```shell
-smiles2class predict \
+smiles2class \
   --model main \
   --model-path <model_dir> \
   --input-csv input.csv \

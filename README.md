@@ -56,7 +56,7 @@ probs, meta = clf.predict(["CCO", "c1ccccc1"], return_meta=True)
 ## CLI
 
 ```shell
-smiles2class predict \
+smiles2class \
   --model main \
   --model-path <model_dir> \
   --input-csv input.csv \

@@ -21,7 +21,7 @@
 |---|---|
 | [Getting started](getting-started.md) | Installation, model directory, minimal examples, CLI |
 | [API](api.md) | Classes and signatures, parameters, return values, status model |
-| [Models](models.md) | Architecture, labels, probability semantics, performance |
+| [Models](models.md) | Architecture, labels, probability semantics, runtime and limits |
 | [Evaluation](evaluation.md) | Per-class metrics, AUROC/AP, reports |
 | [CLI and FAQ](cli-and-faq.md) | Command line, common questions, development |
 

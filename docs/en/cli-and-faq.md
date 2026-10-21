@@ -5,7 +5,7 @@
 ## CLI
 
 ```shell
-smiles2class predict \
+smiles2class \
   --model main \
   --model-path <model_dir> \
   --input-csv input.csv \
@@ -48,7 +48,7 @@ No. Each row is featurized and predicted independently.
 
 ### Why is the vice model so slow?
 
-It evaluates 426 AutoGluon ensembles sequentially, about 47 s per prediction; the first call may be slower. Put the model directory on SSD or pre-warm it at service start.
+It evaluates 426 AutoGluon ensembles sequentially; a prediction can be slow depending on hardware, model directory and cache state. Put the model directory on SSD or pre-warm it at service start.
 
 ### Can it use a GPU?
 
