@@ -1,0 +1,65 @@
+# Defaults for the repo-local HMDB / LIPID MAPS pipelines.
+#
+# Machine paths intentionally stay empty: pass them on the command line, or copy
+# this file, fill in the `clean` / `labels` / `split` sections and pass it with
+# `--config`. The repository itself never hardcodes a data path.
+#
+# Any section may be omitted; user configs are deep-merged over these defaults.
+
+clean:
+  input: null
+  output: null
+  lipidmaps_input: null          # optional: when absent only HMDB is washed
+  hmdb_washed_output: null       # optional intermediate
+
+labels:
+  input: null
+  output: null                   # label_map.json
+  labels_output: null            # multi-hot table; default: <output dir>/labels.parquet
+  path: null                     # label authority; null -> src/smiles2class/labels.json
+  expected_count: 426            # warn when the authority file deviates
+
+split:
+  input: null
+  output: null                   # splits.json
+  stats_output: null             # optional statistics JSON
+  seed: 42                       # recorded in stats; the greedy algorithm is deterministic
+  test_ratio: 0.2
+  vali_ratio: 0.2
+
+columns:
+  hmdb:
+    id: "HMDB ID"
+    smiles: "SMILES"
+    name: "IUPAC Name"
+    parent: "Alternative Parents"
+    kingdom: "Kingdom"
+    super_class: "Super Class"
+    class: "Class"
+    sub_class: "Sub Class"
+    canon_smiles: "CANON_SMILES"
+  lipidmaps:
+    id: "LM_ID"
+    name: "NAME"
+    smiles: "SMILES"
+    kingdom: "CATEGORY"
+    super_class: "MAIN_CLASS"
+    class: "SUB_CLASS"
+    sub_class: "CLASS_LEVEL4"
+  unified:
+    id: "ID"
+    name: "Name"
+    smiles: "SMILES"
+    kingdom: "Kingdom"
+    super_class: "Super Class"
+    class: "Class"
+    sub_class: "Sub Class"
+  labels:
+    # First matching candidate wins; falls back to positional ids.
+    id_candidates: ["id", "ID", "HMDB ID"]
+    output_id: "id"
+    smiles: "SMILES"
+    parent: "Alternative Parents"
+    prefix: "label_"
+  split:
+    id: "id"
