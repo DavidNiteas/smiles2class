@@ -1,7 +1,7 @@
-"""UniMol-based main model (inference only).
+"""UniMol-based main model (inference and training).
 
 Ported from ``uni_classify.model_tools.main_model`` / ``config`` without the
-PyTorch-Lightning training module.
+PyTorch-Lightning training module (which lives in ``training/main``).
 """
 
 from __future__ import annotations
@@ -133,7 +133,7 @@ class UniMolModelModify(UniMolModel):
 
 
 class UniClassifyModel(nn.Module):
-    """Encoder + 426 class-query decoder, inference only."""
+    """Encoder + per-class query decoder (inference and training)."""
 
     def __init__(self, configs: UniClassifyConfig):
         super().__init__()
@@ -151,6 +151,66 @@ class UniClassifyModel(nn.Module):
             num_layers=configs.decoder_layers,
         )
         self.class_classifier = nn.Linear(configs.decoder_embed_dim, 2)
+
+    @classmethod
+    def from_unimol(
+        cls,
+        unimol_path: str | Path,
+        configs: UniClassifyConfig,
+        *args,
+        **kwargs,
+    ) -> "UniClassifyModel":
+        """Build the classifier on top of a pre-trained Uni-Mol encoder."""
+        unimol = UniMolModelModify.from_pretrained(unimol_path, *args, **kwargs)
+        model = cls(configs)
+        model.unimol = unimol
+        return model
+
+    def forward(
+        self,
+        src_tokens,
+        src_distance,
+        src_coord,
+        src_edge_type,
+        encoder_masked_tokens=None,
+        features_only=False,
+        classification_head_name=None,
+        **kwargs,
+    ) -> torch.Tensor:
+        """Return raw ``(B, decoder_token_num, 2)`` class logits (training)."""
+        if self.configs.only_train_decoder:
+            with torch.no_grad():
+                encoder_rep, _pair_rep, padding_mask = self.unimol(
+                    src_tokens,
+                    src_distance,
+                    src_coord,
+                    src_edge_type,
+                    encoder_masked_tokens=encoder_masked_tokens,
+                    features_only=features_only,
+                    classification_head_name=classification_head_name,
+                    return_padding_mask=True,
+                    **kwargs,
+                )
+        else:
+            encoder_rep, _pair_rep, padding_mask = self.unimol(
+                src_tokens,
+                src_distance,
+                src_coord,
+                src_edge_type,
+                encoder_masked_tokens=encoder_masked_tokens,
+                features_only=features_only,
+                classification_head_name=classification_head_name,
+                return_padding_mask=True,
+                **kwargs,
+            )
+        tgt = torch.tile(self.class_tokens.weight.unsqueeze(0), (encoder_rep.size(0), 1, 1))
+        if padding_mask is not None:
+            padding_mask = torch.tile(padding_mask.unsqueeze(1), (1, tgt.size(1), 1))
+            padding_mask = torch.repeat_interleave(
+                padding_mask, self.configs.decoder_attention_heads, dim=0
+            )
+        class_embs = self.class_decoder(tgt, encoder_rep, memory_mask=padding_mask)
+        return self.class_classifier(class_embs)
 
     def predict(
         self,

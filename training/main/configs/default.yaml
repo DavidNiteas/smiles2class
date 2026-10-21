@@ -1,0 +1,44 @@
+# Default config for ``training/main/train.py``.
+# ``model:`` maps onto ``smiles2class.model.UniClassifyConfig``;
+# ``training:`` maps onto ``training.main.lightning.TrainingConfig``.
+
+model:
+  encoder_layers: 15
+  encoder_embed_dim: 512
+  encoder_ffn_embed_dim: 2048
+  encoder_attention_heads: 64
+  decoder_layers: 3
+  decoder_embed_dim: 512
+  decoder_ffn_embed_dim: 2048
+  decoder_attention_heads: 64
+  decoder_token_num: 426
+  only_train_decoder: true
+  emb_dropout: 0.1
+  dropout: 0.1
+  attention_dropout: 0.1
+  activation_dropout: 0.0
+  pooler_dropout: 0.0
+  max_seq_len: 512
+  activation_fn: gelu
+  pooler_activation_fn: tanh
+  post_ln: false
+  mode: infer
+
+training:
+  batch_size: 32
+  dataloader_num_workers: 0
+  learning_rate: 1.0e-5
+  scheduler_monitor: val_loss
+  scheduler_monitor_mode: min
+  scheduler_factor: 0.1
+  scheduler_patience: 5
+  scheduler_interval: epoch
+  scheduler_frequency: 1
+  scheduler_strict: true
+  scheduler_name: val_loss
+  accelerator: auto
+  devices: 1
+  precision: bf16
+  max_epochs: 100
+  max_steps: -1
+  seed: 42

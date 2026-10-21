@@ -1,0 +1,15 @@
+# Default config for ``training/vice/train.py``.
+# ``sampling:`` feeds ``training.vice.sampling.SingleClassifyDataset.train_test_split``;
+# ``training:`` feeds ``TabularPredictor.fit``.
+
+sampling:
+  test_size: 0.5
+  max_magnification: 9
+  seed: 42
+
+training:
+  presets: [medium_quality]
+  fit_strategy: parallel
+  num_cpus: 16
+  time_limit: null
+  max_classes: null
