@@ -4,6 +4,8 @@
 
 `pipelines/` turns raw HMDB / LIPID MAPS tables into a cleaned compound table, a 426-label multi-hot table and train / vali / test splits. It is a **repo-local** tool: it is **not shipped in the wheel** (only in the sdist), and the repository ships **no raw or derived data** — every input is supplied by the caller.
 
+HMDB data is subject to its redistribution terms. This repository does not provide raw or derived HMDB data. Users who need to reproduce the pipeline should obtain the required data from the official HMDB website and follow its terms.
+
 ## Requirements
 
 - `pandas`;

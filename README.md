@@ -20,6 +20,8 @@ pip install "smiles2class[vice] @ git+ssh://git@github.com/MetaEngine-Dev/smiles
 
 模型文件不随仓库分发，`from_pretrained(model_dir)` 需要指向本地模型目录（目录结构见下）。
 
+HMDB 数据受其再分发条款限制，本仓库不提供原始或派生数据。希望复现数据管线/训练的用户，请自行前往 HMDB 官网按条款下载所需数据。
+
 ## 模型目录
 
 ```text
