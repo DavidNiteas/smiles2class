@@ -33,6 +33,9 @@ dev = [
   "pytest-cov>=4.1.0",
   "pyyaml>=6",
 ]
+eval = [
+  "scikit-learn==1.5.1",
+]
 train = [
   "pytorch-lightning>=2.4",
   "torchmetrics>=1",

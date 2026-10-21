@@ -22,6 +22,7 @@
 | [快速开始](getting-started.md) | 安装、模型目录、最小示例、CLI |
 | [API](api.md) | 类与函数签名、参数、返回结构、状态模型 |
 | [模型说明](models.md) | 结构、标签、概率语义、性能与限制 |
+| [评测](evaluation.md) | 逐类指标、AUROC/AP 口径、评测报告 |
 | [CLI 与 FAQ](cli-and-faq.md) | 命令行、常见问题、开发与测试 |
 
 ## 版本与许可

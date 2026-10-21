@@ -14,6 +14,7 @@ SMILES → 426 类概率。提供 **main** 与 **vice** 两种独立实现。
 | [模型说明](zh/models.md) | 主/副模型结构、标签、概率语义、性能 |
 | [训练](zh/training.md) | 主/副模型训练、模型目录契约 |
 | [数据管线](zh/data-pipeline.md) | HMDB/LIPID MAPS 清洗、426 标签 multi-hot、划分 |
+| [评测](zh/evaluation.md) | 逐类指标口径、AUROC/AP、评测报告、快慢测 |
 | [CLI 与 FAQ](zh/cli-and-faq.md) | 命令行、常见问题、开发测试 |
 
 ## English documentation
@@ -26,4 +27,5 @@ SMILES → 426 类概率。提供 **main** 与 **vice** 两种独立实现。
 | [Models](en/models.md) | Architecture, labels, probability semantics, performance |
 | [Training](en/training.md) | Main/vice training, model-directory contract |
 | [Data pipeline](en/data-pipeline.md) | HMDB/LIPID MAPS cleaning, 426-label multi-hot, splits |
+| [Evaluation](en/evaluation.md) | Per-class metrics, AUROC/AP, reports, fast/slow tests |
 | [CLI and FAQ](en/cli-and-faq.md) | Command line, common questions, development |
