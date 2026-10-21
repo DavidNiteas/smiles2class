@@ -27,4 +27,4 @@
 
 ## Version and license
 
-Version `0.1.0`; code under MIT. Class names come from HMDB `Alternative Parents` (ClassyFire terms); the selection and order of the 426 classes are part of the model.
+Version `0.1.1`; code under MIT. Class names come from HMDB `Alternative Parents` (ClassyFire terms); the selection and order of the 426 classes are part of the model.

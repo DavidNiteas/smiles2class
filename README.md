@@ -13,9 +13,9 @@ SMILES → 分子类别概率。当前提供两种独立实现：
 ## 安装
 
 ```shell
-pip install "git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.0"
+pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
 # 需要副模型时：
-pip install "smiles2class[vice] @ git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.0"
+pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
 ```
 
 模型文件不随仓库分发，`from_pretrained(model_dir)` 需要指向本地模型目录（目录结构见下）。
@@ -62,3 +62,8 @@ smiles2class \
   --input-csv input.csv \
   --output preds.csv
 ```
+
+## 维护者
+
+David Niteas <david.ql.d@foxmail.com>
+

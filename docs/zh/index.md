@@ -27,4 +27,4 @@
 
 ## 版本与许可
 
-当前版本 `0.1.0`；代码 MIT。类名来自 HMDB `Alternative Parents`（ClassyFire 术语），426 个类的选择与顺序是模型的一部分。
+当前版本 `0.1.1`；代码 MIT。类名来自 HMDB `Alternative Parents`（ClassyFire 术语），426 个类的选择与顺序是模型的一部分。

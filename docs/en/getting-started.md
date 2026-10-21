@@ -12,20 +12,20 @@
 
 ```shell
 # Main model only
-pip install "git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.0"
+pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
 
 # Main + vice
-pip install "smiles2class[vice] @ git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.0"
+pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
 ```
 
-> The repository is private, hence the SSH URL. Once public, use HTTPS:
-> `pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.0"`.
-> The `unimol-lite@v0.1.0` dependency is also private for now.
+> Maintainers can replace the HTTPS URL with
+> `git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.1`.
+> The `unimol-lite` dependency is installed from its public HTTPS URL at `v0.2.1`.
 
 Development install:
 
 ```shell
-git clone git@github.com:DavidNiteas/smiles2class.git
+git clone https://github.com/DavidNiteas/smiles2class.git
 cd smiles2class
 pip install -e ".[dev,vice]"
 pytest tests/ -q

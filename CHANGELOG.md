@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1] - 2026-10-22
+
+### Changed
+
+- 明确作者与维护者为 David Niteas。
+- 安装文档切换到 `v0.1.1`，依赖改为公开 HTTPS 的 `unimol-lite@v0.2.1`。
+
 ## [0.1.0] - 2026-10-21
 
 ### Added
