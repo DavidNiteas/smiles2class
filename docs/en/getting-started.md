@@ -12,20 +12,20 @@
 
 ```shell
 # Main model only
-pip install "git+ssh://git@github.com/MetaEngine-Dev/smiles2class.git@v0.1.0"
+pip install "git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.0"
 
 # Main + vice
-pip install "smiles2class[vice] @ git+ssh://git@github.com/MetaEngine-Dev/smiles2class.git@v0.1.0"
+pip install "smiles2class[vice] @ git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.0"
 ```
 
 > The repository is private, hence the SSH URL. Once public, use HTTPS:
-> `pip install "git+https://github.com/MetaEngine-Dev/smiles2class.git@v0.1.0"`.
+> `pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.0"`.
 > The `unimol-lite@v0.1.0` dependency is also private for now.
 
 Development install:
 
 ```shell
-git clone git@github.com:MetaEngine-Dev/smiles2class.git
+git clone git@github.com:DavidNiteas/smiles2class.git
 cd smiles2class
 pip install -e ".[dev,vice]"
 pytest tests/ -q

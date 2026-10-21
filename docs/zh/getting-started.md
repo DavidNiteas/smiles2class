@@ -12,20 +12,20 @@
 
 ```shell
 # 只使用主模型
-pip install "git+ssh://git@github.com/MetaEngine-Dev/smiles2class.git@v0.1.0"
+pip install "git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.0"
 
 # 同时使用副模型
-pip install "smiles2class[vice] @ git+ssh://git@github.com/MetaEngine-Dev/smiles2class.git@v0.1.0"
+pip install "smiles2class[vice] @ git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.0"
 ```
 
 > 仓库当前为私有，使用 SSH 地址；公开后可用 HTTPS：
-> `pip install "git+https://github.com/MetaEngine-Dev/smiles2class.git@v0.1.0"`。
+> `pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.0"`。
 > 依赖 `unimol-lite@v0.1.0` 同样是私有仓库，公开后一并切换。
 
 开发模式：
 
 ```shell
-git clone git@github.com:MetaEngine-Dev/smiles2class.git
+git clone git@github.com:DavidNiteas/smiles2class.git
 cd smiles2class
 pip install -e ".[dev,vice]"
 pytest tests/ -q
