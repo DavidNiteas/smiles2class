@@ -46,6 +46,8 @@ The repository does not include training data or trained model weights. To get p
 
 ### Install
 
+Python `>=3.10,<3.12` (3.10 or 3.11) is required.
+
 ```bash
 python -m pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
 
@@ -138,6 +140,8 @@ MIT. See [`LICENSE`](./LICENSE). Citation metadata is in [`CITATION.cff`](./CITA
 - 编码器来自 `unimol-lite`，它是 Uni-Mol 的轻量修改版实现，不是官方 Uni-Mol。
 
 ### 安装
+
+需要 Python `>=3.10,<3.12`（3.10 或 3.11）。
 
 ```bash
 python -m pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"

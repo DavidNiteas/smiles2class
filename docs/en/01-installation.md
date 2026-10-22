@@ -4,7 +4,7 @@
 
 **Level:** 1 — Start
 
-**Prerequisites:** Python 3.10–3.11 and `pip`.
+**Prerequisites:** Python `>=3.10,<3.12` (3.10 or 3.11) and `pip`.
 
 ## Install from Git
 
@@ -23,6 +23,8 @@ python -m pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/s
 With an SSH key configured, `git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.1` can be used instead.
 
 This also installs `unimol-lite@v0.2.1`. UniMol-Lite is a lightweight, modified implementation of Uni-Mol, not the official Uni-Mol release.
+
+`smiles2class` and `unimol-lite` both declare `requires-python = ">=3.10,<3.12"`, so a combined install must use Python 3.10 or 3.11.
 
 ## Development install
 

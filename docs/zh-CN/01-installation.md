@@ -4,7 +4,7 @@
 
 **层级：** 1 — 开始
 
-**前置条件：** Python 3.10–3.11 与 `pip`。
+**前置条件：** Python `>=3.10,<3.12`（3.10 或 3.11）与 `pip`。
 
 ## 从 Git 安装
 
@@ -23,6 +23,8 @@ python -m pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/s
 已配置 SSH 密钥时，也可使用 `git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.1`。
 
 安装时会一并安装 `unimol-lite@v0.2.1`。UniMol-Lite 是 Uni-Mol 的轻量修改版实现，不是官方 Uni-Mol。
+
+`smiles2class` 与 `unimol-lite` 都声明 `requires-python = ">=3.10,<3.12"`，组合安装时请使用 Python 3.10 或 3.11。
 
 ## 开发安装
 

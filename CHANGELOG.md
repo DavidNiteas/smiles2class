@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - 新增 `AUTHORS`、`NOTICE`、`CITATION.cff`；README 改为英文优先的双语结构。
 - 包元数据改用 `license = { file = "LICENSE" }`，补充 classifiers、项目主页与 sdist 文件清单。
 - 公开文档移除“内部工单/开发笔记”等内部过程表述，改为面向用户的“你需要自备”；移除公开 README 中的 CI 说明。
+- 统一 Python 版本说明为 `>=3.10,<3.12`，并注明与 `unimol-lite` 的组合安装范围一致。
 
 ## [0.1.1] - 2026-10-22
 
