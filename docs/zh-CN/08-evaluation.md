@@ -138,6 +138,6 @@ PYTHONPATH=src:. pytest tests/ -q                 # 快测
 PYTHONPATH=src:. pytest tests/ -q -m slow         # 只跑慢测
 ```
 
-快测使用合成数据，可在 CI 中运行；完整模型评测需要本地模型与真值表，应离线运行，产物写到 `evaluation/reports/`（已 gitignore）。
+快测使用合成数据，可在本地快速运行；完整模型评测需要本地模型与真值表，产物写到 `evaluation/reports/`（已 gitignore）。
 
 **下一页：** [为什么只发代码](./09-why-code-only.md)

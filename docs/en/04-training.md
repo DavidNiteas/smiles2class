@@ -114,7 +114,7 @@ clf = ViceClassifier.from_pretrained("runs/main")
 
 - Training code is not in the wheel; `pip install smiles2class` does not pull the training stack;
 - Training data is supplied by the caller; the repository ships no raw or derived data;
-- All entry points accept a fixed seed; full training is not run in CI;
+- All entry points accept a fixed seed; full training needs your own data and compute and is outside the repository test suite;
 - The main model runs on CPU or GPU; vice predictors are AutoGluon tabular models on CPU;
 - Training 426 vice predictors is per-class work; runtime scales with the number of classes and rows.
 

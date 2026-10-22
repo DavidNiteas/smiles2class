@@ -22,11 +22,10 @@
 - **已经训练出模型？** 用 [API](./06-api.md) 或 [CLI](./07-cli-and-faq.md) 预测。
 - **要判断指标可不可信：** 读[评测](./08-evaluation.md)。
 
-## 仓库里没有
+## 你需要自备
 
-- HMDB / LIPID MAPS 原始或派生数据表
-- 训练好的模型目录或权重
-- 内部工单或开发笔记
+- HMDB / LIPID MAPS 原始数据表：从官方页面按条款下载，见[数据管线](./03-data-pipeline.md)。
+- 训练好的模型目录：本仓库不附带权重，按[训练](./04-training.md)生成。
 
 作者见 [`AUTHORS`](../../AUTHORS)，仓库包含什么见 [`NOTICE`](../../NOTICE)。
 

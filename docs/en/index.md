@@ -22,11 +22,10 @@
 - **Already trained a model?** Use the [API](./06-api.md) or [CLI](./07-cli-and-faq.md) to predict.
 - **Need to trust a metric?** Read [Evaluation](./08-evaluation.md).
 
-## Not in this repo
+## What you need to provide
 
-- HMDB / LIPID MAPS raw or derived tables
-- trained model directories or weights
-- internal work orders or development notes
+- HMDB / LIPID MAPS raw tables: download them from the official pages under their terms; see the [data pipeline](./03-data-pipeline.md).
+- A trained model directory: no weights are shipped; produce one with [Training](./04-training.md).
 
 Authors are in [`AUTHORS`](../../AUTHORS). What is shipped is in [`NOTICE`](../../NOTICE).
 

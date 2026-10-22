@@ -138,6 +138,6 @@ PYTHONPATH=src:. pytest tests/ -q                 # fast tests
 PYTHONPATH=src:. pytest tests/ -q -m slow         # slow tests only
 ```
 
-Fast tests use synthetic data and can run in CI; full model evaluation needs local models and a truth table, so it should run offline with reports under `evaluation/reports/` (gitignored).
+Fast tests use synthetic data and run locally; full model evaluation needs local models and a truth table, with reports under `evaluation/reports/` (gitignored).
 
 **Next:** [Why code-only](./09-why-code-only.md)

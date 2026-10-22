@@ -114,7 +114,7 @@ clf = ViceClassifier.from_pretrained("runs/main")
 
 - 训练代码不进入 wheel；`pip install smiles2class` 不会引入训练栈；
 - 训练需要自备数据；仓库不附带原始/派生数据；
-- 所有入口支持固定 seed；完整训练不在 CI 中运行；
+- 所有入口支持固定 seed；完整训练需要自备数据与算力，不在仓库测试范围内；
 - 主模型可 CPU/GPU；副模型是 AutoGluon 表格模型，走 CPU；
 - 426 个副模型 predictor 的训练是逐类进行的，耗时与类别数、数据量成正比。
 

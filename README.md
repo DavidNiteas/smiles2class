@@ -79,7 +79,7 @@ smiles2class --model main --model-path runs/main --input-csv input.csv --output 
 
 ### Status
 
-The pipeline and CLI are covered by tests. Tests use synthetic data and do not require model weights. There is no CI in this repository.
+The pipeline and CLI are covered by tests. Tests use synthetic data and do not require model weights.
 
 ### Authors
 
@@ -172,7 +172,7 @@ smiles2class --model main --model-path runs/main --input-csv input.csv --output 
 
 ### 状态
 
-流程与 CLI 有测试覆盖；测试使用合成数据，不需要模型权重。仓库没有 CI。
+流程与 CLI 有测试覆盖；测试使用合成数据，不需要模型权重。
 
 ### 作者
 
