@@ -7,7 +7,7 @@
 - 文档明确说明：主模型编码器来自 `unimol-lite`（Uni-Mol 的轻量修改版实现），不是官方 Uni-Mol；依赖也不引入官方实现。
 - 文档重构：README 改为中英双语主页，文档索引并入主页，移除 `docs/README.md` 与 `docs/zh|en/index.md`。
 - 项目元数据只保留 `authors`，移除 `maintainers`；README 统一使用“作者”。
-- 文档主页新增“只想要结果？”快捷路径；新增 `agent.md`，覆盖安装、数据获取、清洗、训练与推理。
+- 文档主页新增“只想要结果？”路径，明确本项目不提供预训练模型、需先用自有数据训练；新增 `agent.md`，覆盖安装、数据获取、清洗、训练与预测。
 - 修正训练与评测文档中的命令：`training.main.prepare --labels`、`--smiles-column SMILES`。
 - `.gitignore` 忽略 `data/`、`work/`、`runs/`，避免提交数据与训练产物。
 

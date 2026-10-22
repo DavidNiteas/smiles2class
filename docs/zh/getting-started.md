@@ -41,6 +41,8 @@ pytest tests/ -q
 └── vice_model/             # 426 个 AutoGluon predictor 目录（仅 vice 需要）
 ```
 
+模型文件不随仓库分发，需要按[训练](training.md)自行训练生成。
+
 ## 最小示例：主模型
 
 ```python

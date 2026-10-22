@@ -39,7 +39,7 @@ Loading uses `main_model/config.json` and `main_model/model.safetensors` with a 
 | Main model | runs on CPU or GPU |
 | Vice model | 426 ensembles evaluated sequentially; the first call may be slow |
 | Vice directory | large; SSD/NVMe storage is preferable |
-| Model files | not shipped; `from_pretrained` points at a local directory |
+| Model files | not shipped; train your own model and point `from_pretrained` at its output directory |
 
 - The vice cost is dominated by the 426 ensembles;
 - Pre-warming at service start and using a local cache reduce first-call latency;

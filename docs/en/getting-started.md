@@ -41,6 +41,8 @@ pytest tests/ -q
 └── vice_model/             # 426 AutoGluon predictor directories (vice only)
 ```
 
+Model files are not distributed with the repository; train a model following [Training](training.md).
+
 ## Minimal example: main
 
 ```python

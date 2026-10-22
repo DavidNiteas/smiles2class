@@ -19,21 +19,21 @@ SMILES → 426 个分子类别的概率。提供两种独立实现：
 
 ### 只想要结果？
 
-如果只需要对一批 SMILES 得到预测，不需要训练：
+本项目不提供预训练模型。要得到预测，需要先用自有数据训练模型：
 
-1. 按下一节完成安装。
-2. 准备 `input.csv`，至少包含一列 `smiles`。
-3. 运行：
+1. 按下一节完成基础安装；训练还需要 `.[train,vice]`，见[训练](docs/zh/training.md)。
+2. 按[数据管线](docs/zh/data-pipeline.md)获取 HMDB / LIPID MAPS 数据，完成清洗、426 标签与 train / vali / test 划分。
+3. 按[训练](docs/zh/training.md)训练主模型（可选副模型），得到模型目录（`label_map.json` + `main_model/`）。
+4. 准备 `input.csv`，至少包含一列 `smiles`。
+5. 运行：
 
 ```shell
 smiles2class --model main --model-path <model_dir> --input-csv input.csv --output preds.csv
 ```
 
-4. `preds.csv` 包含 `smiles`、`status` 与 426 个概率列。
+6. `preds.csv` 包含 `smiles`、`status` 与 426 个概率列。
 
-前提是已有模型目录（`label_map.json` + `main_model/`）。模型文件不随仓库分发；没有模型目录时，请联系作者获取，或按[训练](docs/zh/training.md)流程准备数据并训练。
-
-希望 agent 从零跑通？把 [agent.md](agent.md) 交给 agent。它会先与你确认数据来源、许可和存放路径，再执行安装、数据准备与运行。
+已经按上述流程训练出模型目录时，可直接从第 4 步开始。希望 agent 代跑？把 [agent.md](agent.md) 交给 agent；它会先与你确认数据来源、许可和存放路径，再执行安装、数据准备、训练与预测。
 
 ### 安装
 
@@ -43,7 +43,7 @@ pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
 pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
 ```
 
-安装时会一并安装 `unimol-lite@v0.2.1`。模型文件不随仓库分发，`from_pretrained(model_dir)` 需要指向本地模型目录。
+安装时会一并安装 `unimol-lite@v0.2.1`。本项目不提供预训练模型；`from_pretrained(model_dir)` 需要指向用户自己训练得到的模型目录。
 
 ### 快速开始
 
@@ -87,7 +87,7 @@ smiles2class --model main --model-path <model_dir> --input-csv input.csv --outpu
 | 进阶 | [训练](docs/zh/training.md) | 主/副模型训练、模型目录契约 |
 | 进阶 | [数据管线](docs/zh/data-pipeline.md) | HMDB / LIPID MAPS 清洗、426 标签 multi-hot、划分 |
 | 进阶 | [评测](docs/zh/evaluation.md) | 逐类指标、AUROC/AP、报告字段、快慢测 |
-| 快捷 | [只想要结果？](#zh-results) | 已有模型时的最短预测路径 |
+| 快捷 | [只想要结果？](#zh-results) | 从数据准备到训练、预测的最短路径 |
 | Agent | [agent.md](agent.md) | 从安装到数据准备、训练或推理的 agent 流程 |
 
 ### 数据
@@ -117,21 +117,21 @@ SMILES → probabilities for 426 molecular classes. Two independent implementati
 
 ### Just want results?
 
-If you only need predictions for a batch of SMILES, without training:
+This project does not provide pretrained models. To get predictions, train a model on your own data first:
 
-1. Complete the installation in the next section.
-2. Prepare `input.csv` with at least a `smiles` column.
-3. Run:
+1. Complete the base installation in the next section; training also needs `.[train,vice]`, as described in [Training](docs/en/training.md).
+2. Obtain HMDB / LIPID MAPS data and run cleaning, 426-label generation and train / vali / test splitting as described in the [data pipeline](docs/en/data-pipeline.md).
+3. Train the main model (and optionally the vice model) following [Training](docs/en/training.md) to produce a model directory (`label_map.json` + `main_model/`).
+4. Prepare `input.csv` with at least a `smiles` column.
+5. Run:
 
 ```shell
 smiles2class --model main --model-path <model_dir> --input-csv input.csv --output preds.csv
 ```
 
-4. `preds.csv` contains `smiles`, `status` and the 426 probability columns.
+6. `preds.csv` contains `smiles`, `status` and the 426 probability columns.
 
-This requires an existing model directory (`label_map.json` + `main_model/`). Model files are not distributed with the repository; if you do not have a model directory, contact the author, or prepare data and train following [Training](docs/en/training.md).
-
-Want an agent to run the whole flow? Hand [agent.md](agent.md) to the agent. It will first confirm the data source, license and storage path with you, then install, prepare data and run.
+If you have already trained a model directory with the steps above, start from step 4. Want an agent to run the flow? Hand [agent.md](agent.md) to the agent. It will first confirm the data source, license and storage path with you, then install, prepare data, train and predict.
 
 ### Installation
 
@@ -141,7 +141,7 @@ pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
 pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
 ```
 
-This also installs `unimol-lite@v0.2.1`. Model files are not distributed with the repository; `from_pretrained(model_dir)` must point at a local model directory.
+This also installs `unimol-lite@v0.2.1`. This project does not provide pretrained models; `from_pretrained(model_dir)` must point at a model directory trained by the user.
 
 ### Quick start
 
@@ -185,7 +185,7 @@ The homepage keeps only installation and a minimal example; parameters, training
 | Advanced | [Training](docs/en/training.md) | Main/vice training, model-directory contract |
 | Advanced | [Data pipeline](docs/en/data-pipeline.md) | HMDB / LIPID MAPS cleaning, 426-label multi-hot, splits |
 | Advanced | [Evaluation](docs/en/evaluation.md) | Per-class metrics, AUROC/AP, report fields, fast/slow tests |
-| Shortcut | [Just want results?](#en-results) | Shortest prediction path with an existing model |
+| Shortcut | [Just want results?](#en-results) | Shortest path from data preparation to training and prediction |
 | Agent | [agent.md](agent.md) | Agent flow from installation to data preparation, training or inference |
 
 ### Data
