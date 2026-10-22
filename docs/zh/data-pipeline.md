@@ -1,10 +1,21 @@
 # 数据管线
 
-**中文** | [English](../en/data-pipeline.md)
+**中文** | [English](../en/data-pipeline.md) · [返回主页](../../README.md#zh)
 
-`pipelines/` 是仓库内的数据准备工具：把 HMDB / LIPID MAPS 原始表处理成清洗表、426 标签 multi-hot 表与 train / vali / test 划分。它**不随 wheel 安装**（只随 sdist 分发），仓库也**不附带任何原始或派生数据**——所有输入由调用方提供。
+`pipelines/` 是数据准备工具：把 HMDB / LIPID MAPS 原始表处理成清洗表、426 标签 multi-hot 表与 train / vali / test 划分。该目录随源码分发包（sdist）提供，不包含在 wheel 中；仓库不包含任何原始或派生数据，所有输入由调用方提供。
 
-HMDB 数据受其再分发条款限制，本仓库不提供原始或派生数据。希望复现的用户请自行前往 HMDB 官网，按官网条款下载所需数据。
+HMDB 数据受其再分发条款限制，本仓库不提供原始或派生数据。复现时需要自行前往 HMDB 官网，按官网条款下载所需数据。
+
+## 数据获取
+
+| 来源 | 官方页面 | 下载内容 | 说明 |
+|---|---|---|---|
+| HMDB | <https://hmdb.ca/downloads> | 全量代谢物表（优先 CSV） | 426 标签来自 `Alternative Parents`，训练/复现必需；按页面条款使用 |
+| LIPID MAPS | <https://www.lipidmaps.org/databases/lmsd/download> | `LMSD Structure-data file (SDF)` | 可选；SDF 为 CC BY 4.0，需转换为 CSV 后使用 |
+
+LIPID MAPS 的 TSV 只有 `LM_ID` / `INCHIKEY` / `SMILES`，没有分类字段；请使用 SDF，并转换为包含 `LM_ID`、`NAME`、`SMILES`、`CATEGORY`、`MAIN_CLASS`、`SUB_CLASS`、`CLASS_LEVEL4` 的 CSV。
+
+需要 agent 代为完成下载确认、清洗与训练时，使用仓库根目录的 [agent.md](../../agent.md)。
 
 ## 依赖
 
@@ -121,7 +132,7 @@ HMDB 行在前，LIPID MAPS 行在后，不去重；加 `--keep-alternative-pare
 4. 其余进 train；一个分子只进一个集合；
 5. 没有被任何标签覆盖的分子统一进 train，保证三集合构成完整划分。
 
-算法本身无随机性，结果确定；`--seed` 仅记录在统计中（为后续引入随机留位）。
+算法本身无随机性，结果确定；`--seed` 仅记录在统计文件中。
 
 ## 标签权威
 
@@ -129,7 +140,7 @@ HMDB 行在前，LIPID MAPS 行在后，不去重；加 `--keep-alternative-pare
 
 ## 配置
 
-默认配置：`pipelines/hmdb/configs/default.yaml`。`--config` 指定用户配置时，会深度合并到默认配置之上，只需写想覆盖的键。
+默认配置：`pipelines/hmdb/configs/default.yaml`。`--config` 指定用户配置时，会深度合并到默认配置之上，仅需写要覆盖的键。
 
 | 段 | 内容 |
 |---|---|

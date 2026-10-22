@@ -1,6 +1,8 @@
 # 评测
 
-`evaluation/` 提供逐类评测：把真值 multi-hot 矩阵与预测概率对齐，输出每类指标和整体汇总。评测代码不随 wheel 安装，需要额外安装依赖：
+**中文** | [English](../en/evaluation.md) · [返回主页](../../README.md#zh)
+
+`evaluation/` 提供逐类评测：把真值 multi-hot 矩阵与预测概率对齐，输出每类指标和整体汇总。评测代码不包含在 wheel 中，需要额外安装依赖：
 
 ```bash
 pip install -e ".[eval]"      # scikit-learn，用于 AP / ROC AUC
@@ -22,7 +24,7 @@ pip install -e ".[eval]"      # scikit-learn，用于 AP / ROC AUC
 约定：
 
 - **阈值**：默认 `0.5`，可用 `--threshold` 修改。阈值只影响 precision / recall / F1 / balanced accuracy。
-- **AUROC 与 AP 使用连续分数（概率）**：直接把每类的预测概率交给指标函数，绝不用 `argmax` 或阈值化后的 0/1 当分数。阈值化的 0/1 会丢掉排序信息，AUROC 会退化为无意义值。
+- **AUROC 与 AP 使用连续分数（概率）**：直接把每类的预测概率交给指标函数，不使用 `argmax` 或阈值化后的 0/1 作为分数。阈值化的 0/1 会丢失排序信息，使 AUROC 失去意义。
 - **多标签**：真值为 multi-hot，一个分子可以同时属于多个类；各类互不影响。
 - **无效分数**：预测中的 `NaN`（如非法 SMILES 没有输出）按类逐列忽略，不参与该类的统计。
 
@@ -31,7 +33,7 @@ pip install -e ".[eval]"      # scikit-learn，用于 AP / ROC AUC
 - **零正例类**（该类在真值中从未出现）：precision / recall / F1 / AP / ROC AUC / balanced accuracy 均无定义，逐类表中记 `NaN`；
 - **零负例类**（该类在真值中全部为正）：AP / ROC AUC / balanced accuracy 无定义记 `NaN`；precision / recall / F1 仍按阈值计算；
 - 汇总中的 `zero_positive` / `zero_negative` 给出这两类退化类别的数量，`excluded` 给出每个指标因 `NaN` 被排除的类数；
-- **macro** 平均只对非 `NaN` 的类取平均，绝不把无定义类当 0 拉低均值；若某指标所有类都无定义，macro 值为 `null`；
+- **macro** 平均只对非 `NaN` 的类取平均，不把无定义类当作 0 计入；若某指标所有类都无定义，macro 值为 `null`；
 - **micro** 把各类的混淆矩阵（tp / fp / fn / tn）先相加，再按展平后的矩阵计算 P/R/F1 与 balanced accuracy；micro AP / ROC AUC 在展平后的全部 `(样本, 类别)` 分数上计算。
 
 ## 两种用法
@@ -62,7 +64,7 @@ python -m evaluation.evaluate \
 其他参数：
 
 - `--threshold`：判定阈值，默认 `0.5`；
-- `--smiles-column`：SMILES 列名，默认 `smiles`；
+- `--smiles-column`：SMILES 列名，默认 `smiles`；若输入是 `pipelines.hmdb.labels` 产出的 `labels.parquet`，列名为 `SMILES`，需显式传 `--smiles-column SMILES`；
 - `--label-map`：可选 JSON。给列表时按位置命名 `label_0..N` 列（或匹配同名标签列）；给对象时按 `{列名: 显示名}` 重命名。不提供时，优先使用 `label_0..N` 形式的列，否则使用除 SMILES 与 `status` / `id` 之外的全部列。
 
 ### 标签列约定
@@ -132,4 +134,4 @@ PYTHONPATH=src:. pytest tests/ -q                 # 快测
 PYTHONPATH=src:. pytest tests/ -q -m slow         # 只跑慢测
 ```
 
-快测使用合成数据，进 CI；完整模型评测需要本地模型与真值表，建议离线运行，产物写到 `evaluation/reports/`（已 gitignore）。
+快测使用合成数据，可在 CI 中运行；完整模型评测需要本地模型与真值表，应离线运行，产物写到 `evaluation/reports/`（已 gitignore）。

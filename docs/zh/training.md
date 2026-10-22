@@ -1,6 +1,6 @@
 # 训练
 
-**中文** | [English](../en/training.md)
+**中文** | [English](../en/training.md) · [返回主页](../../README.md#zh)
 
 训练代码在 `training/`，**不随 wheel 安装**；从仓库根目录运行。训练产物符合推理侧的模型目录契约。
 
@@ -20,13 +20,16 @@ pip install -e ".[train,vice]"
 
 ```shell
 python -m training.main.prepare \
-  --input work/labels.parquet \
+  --labels work/labels.parquet \
   --splits work/splits.json \
   --output work/dataset.pkl \
+  --smiles-column SMILES \
   --workers 8
 ```
 
 `prepare` 用 `unimol_lite` 把每条 SMILES 转成四个张量，并按 split 组装成可训练的 DataModule。
+
+`pipelines.hmdb.labels` 产出的 SMILES 列名为大写 `SMILES`；使用默认管线产物时保留 `--smiles-column SMILES`。自定义表的列名不同时按实际列名传入。
 
 ### 2. 训练
 
@@ -39,7 +42,7 @@ python -m training.main.train \
   --export
 ```
 
-- `--unimol` 指向 Uni-Mol encoder 目录；
+- `--unimol` 指向 UniMol-Lite 的 encoder 目录（不是官方 Uni-Mol）；
 - `--export` 写出：
 
 ```text
@@ -66,7 +69,8 @@ clf = MainClassifier.from_pretrained("runs/main")
 python -m training.vice.prepare \
   --input work/labels.parquet \
   --model-dir runs/main \
-  --output work/vice.parquet
+  --output work/vice.parquet \
+  --smiles-column SMILES
 ```
 
 - 输入表可带 `cluster_id`；没有时填 0（聚类分层仅影响多数类下采样，不影响能否训练）；
@@ -84,7 +88,7 @@ python -m training.vice.train \
 - 每个类一个 `TabularPredictor`，写入 `runs/main/vice_model/<i>/`；
 - 训练参数（presets、time limit、CPU 数、切分比例）在 `training/vice/configs/default.yaml`；
 - 调试可用 `--max-classes` / `--time-limit`；
-- 子集训练时，`<output>/label_map.json` 只包含实际训练的标签；全量训练请使用主模型产出的模型根 `label_map.json`。
+- 子集训练时，`<output>/label_map.json` 只包含实际训练的标签；全量训练应使用主模型产出的模型根 `label_map.json`。
 
 ### 3. 使用
 

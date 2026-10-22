@@ -1,6 +1,8 @@
 # Evaluation
 
-`evaluation/` computes per-class metrics from a multi-hot ground-truth matrix and predicted probabilities, and writes a report. The evaluation code is not shipped in the wheel; install its extra first:
+[中文](../zh/evaluation.md) | **English** · [Documentation home](../../README.md#en)
+
+`evaluation/` computes per-class metrics from a multi-hot ground-truth matrix and predicted probabilities, and writes a report. The evaluation code is not included in the wheel; install its extra first:
 
 ```bash
 pip install -e ".[eval]"      # scikit-learn, for AP / ROC AUC
@@ -22,7 +24,7 @@ Each class is an independent one-vs-rest binary problem:
 Rules:
 
 - **Threshold**: `0.5` by default, configurable with `--threshold`. It only affects precision / recall / F1 / balanced accuracy.
-- **AUROC and AP take continuous scores (probabilities)**: the raw per-class probability is passed to the metric. Never use `argmax` or thresholded 0/1 labels as scores — thresholding discards ranking information and makes AUROC meaningless.
+- **AUROC and AP take continuous scores (probabilities)**: the raw per-class probability is passed to the metric. `argmax` or thresholded 0/1 labels are not used as scores, because thresholding discards ranking information and makes AUROC meaningless.
 - **Multi-label**: truth is multi-hot, so one molecule may belong to several classes; classes are scored independently.
 - **Invalid scores**: `NaN` predictions (e.g. an invalid SMILES with no output) are ignored per class and do not contribute to that class's metrics.
 
@@ -31,7 +33,7 @@ Rules:
 - **Zero-positive class** (never positive in the truth): precision / recall / F1 / AP / ROC AUC / balanced accuracy are undefined and recorded as `NaN` in the per-class table;
 - **Zero-negative class** (positive in every row): AP / ROC AUC / balanced accuracy are undefined and recorded as `NaN`; precision / recall / F1 are still computed at the threshold;
 - `zero_positive` / `zero_negative` in the summary count these degenerate classes; `excluded` counts, per metric, how many classes were dropped because of `NaN`;
-- **macro** averages only the defined (non-`NaN`) classes — undefined classes are never counted as zero. If every class is undefined for a metric, the macro value is `null`;
+- **macro** averages only the defined (non-`NaN`) classes; undefined classes are not counted as zero. If every class is undefined for a metric, the macro value is `null`;
 - **micro** sums the per-class confusion matrices (tp / fp / fn / tn) first and derives P/R/F1 and balanced accuracy from the flattened matrix; micro AP / ROC AUC are computed over all flattened `(sample, class)` scores.
 
 ## Two ways to run
@@ -62,7 +64,7 @@ python -m evaluation.evaluate \
 Other options:
 
 - `--threshold`: decision threshold, default `0.5`;
-- `--smiles-column`: SMILES column name, default `smiles`;
+- `--smiles-column`: SMILES column name, default `smiles`; for the `labels.parquet` produced by `pipelines.hmdb.labels`, the column is `SMILES`, so pass `--smiles-column SMILES` explicitly;
 - `--label-map`: optional JSON. A list names `label_0..N` columns positionally (or matches same-named columns); an object maps `{column: display name}`. Without it, `label_0..N` columns are preferred, otherwise every column except SMILES and `status` / `id` is treated as a label.
 
 ### Label column conventions
@@ -132,4 +134,4 @@ PYTHONPATH=src:. pytest tests/ -q                 # fast tests
 PYTHONPATH=src:. pytest tests/ -q -m slow         # slow tests only
 ```
 
-Fast tests use synthetic data and run in CI; full model evaluation needs local models and a truth table, so run it offline and keep the report under `evaluation/reports/` (gitignored).
+Fast tests use synthetic data and can run in CI; full model evaluation needs local models and a truth table, so it should run offline with reports under `evaluation/reports/` (gitignored).

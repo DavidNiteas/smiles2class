@@ -9,7 +9,6 @@ description = "SMILES → molecular class probabilities (main / vice implementat
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "David Niteas", email = "david.ql.d@foxmail.com" }]
-maintainers = [{ name = "David Niteas", email = "david.ql.d@foxmail.com" }]
 requires-python = ">=3.10,<3.12"
 dependencies = [
   "unimol-lite @ git+https://github.com/MetaEngine-Dev/unimol_lite.git@v0.2.1",
@@ -65,6 +64,7 @@ include = [
   "/pipelines",
   "/evaluation",
   "/benchmarks",
+  "/agent.md",
   "/README.md",
   "/CHANGELOG.md",
   "/LICENSE",

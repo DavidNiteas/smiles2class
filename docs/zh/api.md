@@ -1,6 +1,6 @@
 # API
 
-**中文** | [English](../en/api.md)
+**中文** | [English](../en/api.md) · [返回主页](../../README.md#zh)
 
 ## MainClassifier
 
@@ -78,7 +78,7 @@ probs, metas = clf.predict(
 
 `meta` 另含 `coord_mode`、`reason`、`elapsed_s`。
 
-> `degraded_2d` 是训练分布外输入：主模型训练用 3D 构象。下游不要静默把它当正常结果，应按 `status` 过滤或降权。
+> `degraded_2d` 属于训练分布外输入：主模型使用 3D 构象训练。下游应按 `status` 过滤或降权。
 
 ## 标签
 

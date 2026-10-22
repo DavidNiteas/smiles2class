@@ -1,10 +1,12 @@
 # Models
 
-[中文](../zh/models.md) | **English**
+[中文](../zh/models.md) | **English** · [Documentation home](../../README.md#en)
 
 ## Main model
 
-- Uni-Mol 15-layer encoder (512-dim) plus a 3-layer TransformerDecoder;
+> The encoder comes from the companion library UniMol-Lite, not official Uni-Mol. UniMol-Lite is a lightweight, modified implementation of Uni-Mol.
+
+- A Uni-Mol-style 15-layer encoder (512-dim) from UniMol-Lite plus a 3-layer TransformerDecoder;
 - 426 class-query tokens, each projected by `Linear(512, 2)` into a yes/no probability;
 - The output is **426 independent binary probabilities**, not a 426-way mutually exclusive softmax; values do not sum to one across classes;
 - The 512-dim CLS embedding is also returned for the vice model.
@@ -36,10 +38,9 @@ Loading uses `main_model/config.json` and `main_model/model.safetensors` with a 
 |---|---|
 | Main model | runs on CPU or GPU |
 | Vice model | 426 ensembles evaluated sequentially; the first call may be slow |
-| Vice directory | large; SSD/NVMe storage is recommended |
+| Vice directory | large; SSD/NVMe storage is preferable |
 | Model files | not shipped; `from_pretrained` points at a local directory |
 
 - The vice cost is dominated by the 426 ensembles;
-- Pre-warm at service start or use a local cache;
-- Public docs do not report benchmark conclusions; runtime depends on hardware,
-  model directory and input distribution.
+- Pre-warming at service start and using a local cache reduce first-call latency;
+- Runtime depends on hardware, model directory and input distribution.

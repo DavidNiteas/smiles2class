@@ -1,10 +1,21 @@
 # Data pipeline
 
-[中文](../zh/data-pipeline.md) | **English**
+[中文](../zh/data-pipeline.md) | **English** · [Documentation home](../../README.md#en)
 
-`pipelines/` turns raw HMDB / LIPID MAPS tables into a cleaned compound table, a 426-label multi-hot table and train / vali / test splits. It is a **repo-local** tool: it is **not shipped in the wheel** (only in the sdist), and the repository ships **no raw or derived data** — every input is supplied by the caller.
+`pipelines/` turns raw HMDB / LIPID MAPS tables into a cleaned compound table, a 426-label multi-hot table and train / vali / test splits. It is distributed in the source archive (sdist) and is not included in the wheel. The repository contains no raw or derived data; every input is supplied by the caller.
 
 HMDB data is subject to its redistribution terms. This repository does not provide raw or derived HMDB data. Users who need to reproduce the pipeline should obtain the required data from the official HMDB website and follow its terms.
+
+## Obtaining data
+
+| Source | Official page | Download | Notes |
+|---|---|---|---|
+| HMDB | <https://hmdb.ca/downloads> | Full metabolite table (CSV preferred) | The 426 labels come from `Alternative Parents`; required for training/reproduction. Follow the site terms. |
+| LIPID MAPS | <https://www.lipidmaps.org/databases/lmsd/download> | `LMSD Structure-data file (SDF)` | Optional; the SDF is CC BY 4.0 and must be converted to CSV before use. |
+
+The LIPID MAPS TSV contains only `LM_ID` / `INCHIKEY` / `SMILES` and no taxonomy fields. Use the SDF and convert it to a CSV with `LM_ID`, `NAME`, `SMILES`, `CATEGORY`, `MAIN_CLASS`, `SUB_CLASS` and `CLASS_LEVEL4`.
+
+For an agent-driven flow covering download confirmation, cleaning and training, use [agent.md](../../agent.md) at the repository root.
 
 ## Requirements
 
@@ -121,7 +132,7 @@ Algorithm (greedy coverage split):
 4. everything else goes to train; a molecule belongs to one split only;
 5. molecules covered by no label go to train, so the three splits always form a complete partition.
 
-The algorithm has no randomness and the output is deterministic; `--seed` is only recorded in the stats (reserved for future randomised variants).
+The algorithm has no randomness and the output is deterministic; `--seed` is only recorded in the stats file.
 
 ## Label authority
 
@@ -129,7 +140,7 @@ The 426 class names and their order come from `src/smiles2class/labels.json`, al
 
 ## Config
 
-Defaults: `pipelines/hmdb/configs/default.yaml`. A `--config` file is deep-merged over the defaults, so it only needs the keys you want to override.
+Defaults: `pipelines/hmdb/configs/default.yaml`. A `--config` file is deep-merged over the defaults, so it only needs the keys to override.
 
 | Section | Content |
 |---|---|

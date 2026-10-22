@@ -6,11 +6,11 @@
 2. 与 `src/smiles2class/labels.json` 逐项一致的 426 标签 multi-hot 表；
 3. train / vali / test 划分。
 
-## 定位
+## 分发方式
 
-- **不进 wheel**：`pyproject.toml` 的 wheel 只打包 `src/smiles2class`，本目录随 sdist 分发；
-- **不附带数据**：仓库不含任何原始或派生数据表；
-- **全部参数化**：路径、列名、比例、seed 均来自命令行或 `pipelines/hmdb/configs/default.yaml`，代码不写死机器路径。
+- `pipelines/` 随源码分发包（sdist）提供，不包含在 wheel 中；
+- 仓库不包含原始或派生数据表；
+- 路径、列名、比例与 seed 由命令行参数或 `pipelines/hmdb/configs/default.yaml` 提供。
 
 ## 目录
 

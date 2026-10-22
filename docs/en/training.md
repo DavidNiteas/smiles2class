@@ -1,6 +1,6 @@
 # Training
 
-[中文](../zh/training.md) | **English**
+[中文](../zh/training.md) | **English** · [Documentation home](../../README.md#en)
 
 Training code lives in `training/` and is **not installed with the wheel**; run it from the repository root. Its output follows the model-directory contract used by inference.
 
@@ -20,13 +20,16 @@ After `pipelines/` produces `labels.parquet` and `splits.json`:
 
 ```shell
 python -m training.main.prepare \
-  --input work/labels.parquet \
+  --labels work/labels.parquet \
   --splits work/splits.json \
   --output work/dataset.pkl \
+  --smiles-column SMILES \
   --workers 8
 ```
 
 `prepare` turns each SMILES into the four tensors with `unimol_lite` and assembles a trainable DataModule per split.
+
+The table produced by `pipelines.hmdb.labels` uses an uppercase `SMILES` column; keep `--smiles-column SMILES` for the default pipeline output, and pass the actual column name for custom tables.
 
 ### 2. Train
 
@@ -39,7 +42,7 @@ python -m training.main.train \
   --export
 ```
 
-- `--unimol` points at the Uni-Mol encoder directory;
+- `--unimol` points at a UniMol-Lite encoder directory (not official Uni-Mol);
 - `--export` writes:
 
 ```text
@@ -66,7 +69,8 @@ clf = MainClassifier.from_pretrained("runs/main")
 python -m training.vice.prepare \
   --input work/labels.parquet \
   --model-dir runs/main \
-  --output work/vice.parquet
+  --output work/vice.parquet \
+  --smiles-column SMILES
 ```
 
 - The input may carry `cluster_id`; when absent it is set to 0 (clustering only affects majority-class downsampling);
@@ -105,7 +109,7 @@ clf = ViceClassifier.from_pretrained("runs/main")
 ## Reproducibility and limits
 
 - Training code is not in the wheel; `pip install smiles2class` does not pull the training stack;
-- Bring your own data; the repository ships no raw or derived data;
+- Training data is supplied by the caller; the repository ships no raw or derived data;
 - All entry points accept a fixed seed; full training is not run in CI;
 - The main model runs on CPU or GPU; vice predictors are AutoGluon tabular models on CPU;
 - Training 426 vice predictors is per-class work; runtime scales with the number of classes and rows.

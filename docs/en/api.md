@@ -1,6 +1,6 @@
 # API
 
-[中文](../zh/api.md) | **English**
+[中文](../zh/api.md) | **English** · [Documentation home](../../README.md#en)
 
 ## MainClassifier
 
@@ -52,7 +52,7 @@ probs, metas = clf.predict(
 
 - Runs the main model first to get `(N, 512)` embeddings, then the 426 predictors;
 - `vice_workers` defaults to `1` (sequential); larger values are allowed but not guaranteed to be faster;
-- The output is `(N, 426)`; it is **not** a fused result.
+- The output is `(N, 426)`; it reuses the main model's embedding but remains an independent per-class result.
 
 ## Row alignment and edge cases
 
@@ -78,7 +78,7 @@ probs, metas = clf.predict(
 
 `meta` also contains `coord_mode`, `reason` and `elapsed_s`.
 
-> `degraded_2d` is out-of-distribution input: the main model was trained on 3D conformers. Do not silently treat it as normal — filter or de-prioritize by `status`.
+> `degraded_2d` is out-of-distribution input: the main model is trained on 3D conformers. Filter or de-prioritize these rows by `status`.
 
 ## Labels
 

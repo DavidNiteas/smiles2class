@@ -7,6 +7,9 @@ dist/
 *.egg-info/
 .pytest_cache/
 evaluation/reports/
+/data/
+/work/
+/runs/
 .coverage
 htmlcov/
 *.log

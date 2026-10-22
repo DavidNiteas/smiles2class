@@ -1,10 +1,12 @@
 # 模型说明
 
-**中文** | [English](../en/models.md)
+**中文** | [English](../en/models.md) · [返回主页](../../README.md#zh)
 
 ## 主模型（main）
 
-- Uni-Mol 15 层 encoder（512 维）+ 3 层 TransformerDecoder；
+> 编码器来自配套库 UniMol-Lite，不是官方 Uni-Mol。UniMol-Lite 是 Uni-Mol 的轻量修改版实现。
+
+- Uni-Mol 风格的 15 层 encoder（512 维，来自 UniMol-Lite）+ 3 层 TransformerDecoder；
 - 426 个类查询 token，每个 token 经过 `Linear(512, 2)` 输出该类的“是/否”概率；
 - 因此输出是 **426 个独立的二分类概率**，不是 426 类互斥 softmax，跨类不归一；
 - 同时给出 `(N, 512)` 的 CLS embedding，供副模型使用。
@@ -36,9 +38,9 @@
 |---|---|
 | 主模型 | 可在 CPU 或 GPU 上运行 |
 | 副模型 | 426 个集成顺序推理；首次调用可能较慢 |
-| 副模型目录 | 体积较大，建议放在 SSD/NVMe |
+| 副模型目录 | 体积较大，宜放在 SSD/NVMe |
 | 模型文件 | 不随仓库分发，`from_pretrained` 指向本地模型目录 |
 
 - 副模型的主要成本是 426 个集成的计算；
-- 建议在服务启动时预热，或使用本地缓存；
-- 公开文档不提供性能基准结论；具体耗时取决于硬件、模型目录和输入分布。
+- 服务启动时预热或使用本地缓存，可降低首次调用延迟；
+- 耗时取决于硬件、模型目录和输入分布。

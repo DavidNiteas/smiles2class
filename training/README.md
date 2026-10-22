@@ -1,3 +1,3 @@
 # training
 
-训练代码将放在这里（主模型 / 副模型），不随 wheel 安装。见 `docs/zh/training.md`。
+主模型与副模型的训练代码，不包含在 wheel 中。使用方式见 `docs/zh/training.md`。

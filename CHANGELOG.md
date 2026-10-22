@@ -1,17 +1,28 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+
+- 文档明确说明：主模型编码器来自 `unimol-lite`（Uni-Mol 的轻量修改版实现），不是官方 Uni-Mol；依赖也不引入官方实现。
+- 文档重构：README 改为中英双语主页，文档索引并入主页，移除 `docs/README.md` 与 `docs/zh|en/index.md`。
+- 项目元数据只保留 `authors`，移除 `maintainers`；README 统一使用“作者”。
+- 文档主页新增“只想要结果？”快捷路径；新增 `agent.md`，覆盖安装、数据获取、清洗、训练与推理。
+- 修正训练与评测文档中的命令：`training.main.prepare --labels`、`--smiles-column SMILES`。
+- `.gitignore` 忽略 `data/`、`work/`、`runs/`，避免提交数据与训练产物。
+
 ## [0.1.1] - 2026-10-22
 
 ### Changed
 
-- 明确作者与维护者为 David Niteas。
-- 安装文档切换到 `v0.1.1`，依赖改为公开 HTTPS 的 `unimol-lite@v0.2.1`。
+- 安装说明指向 `v0.1.1`。
+- `unimol-lite` 依赖固定为 `v0.2.1`。
 
 ## [0.1.0] - 2026-10-21
 
 ### Added
 
-- `MainClassifier`：UniMol encoder + 426 类查询解码器，输出 `(N, 426)` 概率（同时给出 512 维 embedding）。
+- `MainClassifier`：UniMol-Lite encoder + 426 类查询解码器，输出 `(N, 426)` 概率（同时给出 512 维 embedding）。
 - `ViceClassifier`：复用主模型 embedding，走 426 个 AutoGluon 逐类 predictor，输出 `(N, 426)` 概率。
 - 行对齐：输出与输入等长保序；重复 SMILES 不折叠；非法 SMILES 该行全 `NaN` + `status="invalid"`。
 - CLI：`smiles2class --model main|vice`。

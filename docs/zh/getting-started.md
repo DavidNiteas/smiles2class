@@ -1,11 +1,12 @@
 # 快速开始
 
-**中文** | [English](../en/getting-started.md)
+**中文** | [English](../en/getting-started.md) · [返回主页](../../README.md#zh)
 
 ## 环境要求
 
 - Python 3.10 – 3.11；
 - `rdkit>=2025.9,<2026`、`torch>=2.0`、`transformers>=4.47,<5`、`numpy<2`；
+- 编码器由 `unimol-lite`（导入名 `unimol_lite`）提供；它是 Uni-Mol 的轻量修改版实现，不是官方 Uni-Mol；
 - 副模型额外需要 `autogluon.tabular==1.2.0` 与 `scikit-learn==1.5.1`。
 
 ## 安装
@@ -18,9 +19,9 @@ pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
 pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
 ```
 
-> 维护者可将 HTTPS 地址替换为
+> 已配置 SSH 密钥时，也可使用
 > `git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.1`。
-> 依赖 `unimol-lite` 从其公开 HTTPS 地址的 `v0.2.1` 安装。
+> `unimol-lite` 依赖固定为 `v0.2.1`（Uni-Mol 的轻量修改版实现，不是官方 Uni-Mol）。
 
 开发模式：
 
@@ -78,3 +79,10 @@ smiles2class \
 ```
 
 输出 CSV 包含 `smiles`、`status` 与 426 个概率列。
+
+## 下一步
+
+- 查参数与返回结构：[API](api.md)
+- 了解模型与概率语义：[模型说明](models.md)
+- 命令行与常见问题：[CLI 与 FAQ](cli-and-faq.md)
+- 需要 agent 代跑安装、数据准备与训练：[agent.md](../../agent.md)

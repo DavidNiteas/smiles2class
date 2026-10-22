@@ -1,6 +1,6 @@
 # CLI and FAQ
 
-[中文](../zh/cli-and-faq.md) | **English**
+[中文](../zh/cli-and-faq.md) | **English** · [Documentation home](../../README.md#en)
 
 ## CLI
 
@@ -34,29 +34,29 @@ The output CSV has `smiles`, `status` and the 426 probability columns; the row c
 
 ## FAQ
 
-### Why is a row all NaN?
+### A row of NaNs
 
-The SMILES could not be parsed. `status="invalid"`; other rows are unaffected.
+When a SMILES cannot be parsed, that row has `status="invalid"` and all 426 probabilities are `NaN`; other rows are unaffected.
 
-### Can I use `degraded_2d` rows?
+### Using `degraded_2d` rows
 
-With care. The main model was trained on 3D conformers; 2D is out of distribution. Filter by `status` or de-prioritize downstream.
+The main model is trained on 3D conformers, so 2D is out-of-distribution input. Filter these rows by `status` or de-prioritize them downstream.
 
-### Are duplicate SMILES collapsed?
+### Duplicate SMILES
 
-No. Each row is featurized and predicted independently.
+Duplicate rows are not merged. Each row is featurized and predicted independently, and the output row count matches the input.
 
-### Why is the vice model so slow?
+### Vice-model runtime
 
-It evaluates 426 AutoGluon ensembles sequentially; a prediction can be slow depending on hardware, model directory and cache state. Put the model directory on SSD or pre-warm it at service start.
+The vice model contains 426 AutoGluon ensembles and evaluates them sequentially by default. Runtime depends on hardware, model directory and cache state. Keep the model directory on an SSD and pre-warm at service start where needed.
 
-### Can it use a GPU?
+### GPU support
 
-The main model supports `device="cuda"`; the vice predictors are tabular AutoGluon models and stay on CPU.
+The main model supports `device="cuda"`; the vice predictors are tabular AutoGluon models and run on CPU.
 
-### Should I normalise the probabilities?
+### Probability normalisation
 
-No. The 426 outputs are independent binary probabilities and do not sum to one; normalising changes the semantics.
+The 426 outputs are independent binary probabilities and do not sum to one; normalisation changes their semantics.
 
 ## Development and tests
 
@@ -65,4 +65,4 @@ pip install -e ".[dev,vice]"
 pytest tests/ -q
 ```
 
-Tests read the model directory from `S2C_MODEL_DIR`; if unset they use `<repo>/../model/uni_classify` and skip when it is absent.
+Tests read the model directory from `S2C_MODEL_DIR` and skip model-dependent tests when it is unset.

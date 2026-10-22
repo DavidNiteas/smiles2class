@@ -1,11 +1,12 @@
 # Getting started
 
-[中文](../zh/getting-started.md) | **English**
+[中文](../zh/getting-started.md) | **English** · [Documentation home](../../README.md#en)
 
 ## Requirements
 
 - Python 3.10 – 3.11;
 - `rdkit>=2025.9,<2026`, `torch>=2.0`, `transformers>=4.47,<5`, `numpy<2`;
+- the encoder is provided by `unimol-lite` (import name `unimol_lite`), a lightweight modified implementation of Uni-Mol, not the official Uni-Mol;
 - the vice model additionally needs `autogluon.tabular==1.2.0` and `scikit-learn==1.5.1`.
 
 ## Installation
@@ -18,9 +19,9 @@ pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
 pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
 ```
 
-> Maintainers can replace the HTTPS URL with
+> With an SSH key configured, the SSH URL can also be used:
 > `git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.1`.
-> The `unimol-lite` dependency is installed from its public HTTPS URL at `v0.2.1`.
+> The `unimol-lite` dependency is pinned to `v0.2.1` (a lightweight modified implementation of Uni-Mol, not the official Uni-Mol).
 
 Development install:
 
@@ -78,3 +79,10 @@ smiles2class \
 ```
 
 The output CSV contains `smiles`, `status` and the 426 probability columns.
+
+## Next steps
+
+- Parameters and return values: [API](api.md)
+- Model architecture and probability semantics: [Models](models.md)
+- Command line and common questions: [CLI and FAQ](cli-and-faq.md)
+- Agent-driven installation, data preparation and training: [agent.md](../../agent.md)
