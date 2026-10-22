@@ -1,6 +1,10 @@
 # Evaluation
 
-[中文](../zh/evaluation.md) | **English** · [Documentation home](../../README.md#en)
+[中文](../zh-CN/08-evaluation.md) | **English** · [Documentation home](../../README.md#english)
+
+**Level:** 3 — Reference
+
+**Prerequisites:** [Training](./04-training.md).
 
 `evaluation/` computes per-class metrics from a multi-hot ground-truth matrix and predicted probabilities, and writes a report. The evaluation code is not included in the wheel; install its extra first:
 
@@ -135,3 +139,5 @@ PYTHONPATH=src:. pytest tests/ -q -m slow         # slow tests only
 ```
 
 Fast tests use synthetic data and can run in CI; full model evaluation needs local models and a truth table, so it should run offline with reports under `evaluation/reports/` (gitignored).
+
+**Next:** [Why code-only](./09-why-code-only.md)

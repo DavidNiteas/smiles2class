@@ -1,6 +1,10 @@
 # CLI and FAQ
 
-[中文](../zh/cli-and-faq.md) | **English** · [Documentation home](../../README.md#en)
+[中文](../zh-CN/07-cli-and-faq.md) | **English** · [Documentation home](../../README.md#english)
+
+**Level:** 3 — Reference
+
+**Prerequisites:** [Quickstart](./02-quickstart.md).
 
 ## CLI
 
@@ -66,3 +70,5 @@ pytest tests/ -q
 ```
 
 Tests read the model directory from `S2C_MODEL_DIR` and skip model-dependent tests when it is unset.
+
+**Next:** [Evaluation](./08-evaluation.md)

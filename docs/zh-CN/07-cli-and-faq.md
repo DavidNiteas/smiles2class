@@ -1,6 +1,10 @@
 # CLI 与 FAQ
 
-**中文** | [English](../en/cli-and-faq.md) · [返回主页](../../README.md#zh)
+**中文** | [English](../en/07-cli-and-faq.md) · [返回主页](../../README.md#zh-cn)
+
+**层级：** 3 — 参考
+
+**前置条件：** [快速开始](./02-quickstart.md)。
 
 ## CLI
 
@@ -66,3 +70,5 @@ pytest tests/ -q
 ```
 
 测试通过 `S2C_MODEL_DIR` 指定模型目录；未设置时跳过依赖模型的测试。
+
+**下一页：** [评测](./08-evaluation.md)

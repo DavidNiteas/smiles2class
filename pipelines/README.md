@@ -68,4 +68,4 @@ python -m pipelines.hmdb.split \
 - `labels` 的 `--output` 是 `label_map.json`，multi-hot 表默认写到同目录的 `labels.parquet`；
 - `split` 的 `--output` 固定为 `{"train": [...], "vali": [...], "test": [...]}`，每标签覆盖统计走 `--stats-output`。
 
-详细输入 schema / 输出契约见 [`docs/zh/data-pipeline.md`](../docs/zh/data-pipeline.md)。
+详细输入 schema / 输出契约见 [`docs/zh-CN/03-data-pipeline.md`](../docs/zh-CN/03-data-pipeline.md)。

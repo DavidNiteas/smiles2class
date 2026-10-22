@@ -1,6 +1,10 @@
 # API
 
-[中文](../zh/api.md) | **English** · [Documentation home](../../README.md#en)
+[中文](../zh-CN/06-api.md) | **English** · [Documentation home](../../README.md#english)
+
+**Level:** 3 — Reference
+
+**Prerequisites:** [Quickstart](./02-quickstart.md), [Models](./05-models.md).
 
 ## MainClassifier
 
@@ -89,3 +93,5 @@ assert NUM_LABELS == 426
 ```
 
 The order of `LABELS` is aligned with the model output columns and **must not be reordered**.
+
+**Next:** [CLI and FAQ](./07-cli-and-faq.md)

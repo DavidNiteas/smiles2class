@@ -1,6 +1,10 @@
 # Models
 
-[中文](../zh/models.md) | **English** · [Documentation home](../../README.md#en)
+[中文](../zh-CN/05-models.md) | **English** · [Documentation home](../../README.md#english)
+
+**Level:** 3 — Reference
+
+**Prerequisites:** [Quickstart](./02-quickstart.md).
 
 ## Main model
 
@@ -44,3 +48,5 @@ Loading uses `main_model/config.json` and `main_model/model.safetensors` with a 
 - The vice cost is dominated by the 426 ensembles;
 - Pre-warming at service start and using a local cache reduce first-call latency;
 - Runtime depends on hardware, model directory and input distribution.
+
+**Next:** [API](./06-api.md)

@@ -1,6 +1,10 @@
 # 评测
 
-**中文** | [English](../en/evaluation.md) · [返回主页](../../README.md#zh)
+**中文** | [English](../en/08-evaluation.md) · [返回主页](../../README.md#zh-cn)
+
+**层级：** 3 — 参考
+
+**前置条件：** [训练](./04-training.md)。
 
 `evaluation/` 提供逐类评测：把真值 multi-hot 矩阵与预测概率对齐，输出每类指标和整体汇总。评测代码不包含在 wheel 中，需要额外安装依赖：
 
@@ -135,3 +139,5 @@ PYTHONPATH=src:. pytest tests/ -q -m slow         # 只跑慢测
 ```
 
 快测使用合成数据，可在 CI 中运行；完整模型评测需要本地模型与真值表，应离线运行，产物写到 `evaluation/reports/`（已 gitignore）。
+
+**下一页：** [为什么只发代码](./09-why-code-only.md)

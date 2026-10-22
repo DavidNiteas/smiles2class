@@ -1,6 +1,10 @@
 # 数据管线
 
-**中文** | [English](../en/data-pipeline.md) · [返回主页](../../README.md#zh)
+**中文** | [English](../en/03-data-pipeline.md) · [返回主页](../../README.md#zh-cn)
+
+**层级：** 2 — 使用
+
+**前置条件：** [安装](./01-installation.md)。
 
 `pipelines/` 是数据准备工具：把 HMDB / LIPID MAPS 原始表处理成清洗表、426 标签 multi-hot 表与 train / vali / test 划分。该目录随源码分发包（sdist）提供，不包含在 wheel 中；仓库不包含任何原始或派生数据，所有输入由调用方提供。
 
@@ -15,7 +19,7 @@ HMDB 数据受其再分发条款限制，本仓库不提供原始或派生数据
 
 LIPID MAPS 的 TSV 只有 `LM_ID` / `INCHIKEY` / `SMILES`，没有分类字段；请使用 SDF，并转换为包含 `LM_ID`、`NAME`、`SMILES`、`CATEGORY`、`MAIN_CLASS`、`SUB_CLASS`、`CLASS_LEVEL4` 的 CSV。
 
-需要 agent 代为完成下载确认、清洗与训练时，使用仓库根目录的 [agent.md](../../agent.md)。
+需要 agent 代为完成下载确认、清洗与训练时，使用仓库根目录的 [AGENTS.md](../../AGENTS.md)。
 
 ## 依赖
 
@@ -150,3 +154,5 @@ HMDB 行在前，LIPID MAPS 行在后，不去重；加 `--keep-alternative-pare
 | `columns` | HMDB / LIPID MAPS / 统一表 / 标签 / 划分的列名映射 |
 
 也可以完全用命令行参数驱动，不修改配置文件。
+
+**下一页：** [训练](./04-training.md)

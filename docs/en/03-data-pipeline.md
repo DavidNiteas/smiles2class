@@ -1,6 +1,10 @@
 # Data pipeline
 
-[中文](../zh/data-pipeline.md) | **English** · [Documentation home](../../README.md#en)
+[中文](../zh-CN/03-data-pipeline.md) | **English** · [Documentation home](../../README.md#english)
+
+**Level:** 2 — Use
+
+**Prerequisites:** [Installation](./01-installation.md).
 
 `pipelines/` turns raw HMDB / LIPID MAPS tables into a cleaned compound table, a 426-label multi-hot table and train / vali / test splits. It is distributed in the source archive (sdist) and is not included in the wheel. The repository contains no raw or derived data; every input is supplied by the caller.
 
@@ -15,7 +19,7 @@ HMDB data is subject to its redistribution terms. This repository does not provi
 
 The LIPID MAPS TSV contains only `LM_ID` / `INCHIKEY` / `SMILES` and no taxonomy fields. Use the SDF and convert it to a CSV with `LM_ID`, `NAME`, `SMILES`, `CATEGORY`, `MAIN_CLASS`, `SUB_CLASS` and `CLASS_LEVEL4`.
 
-For an agent-driven flow covering download confirmation, cleaning and training, use [agent.md](../../agent.md) at the repository root.
+For an agent-driven flow covering download confirmation, cleaning and training, use [AGENTS.md](../../AGENTS.md) at the repository root.
 
 ## Requirements
 
@@ -150,3 +154,5 @@ Defaults: `pipelines/hmdb/configs/default.yaml`. A `--config` file is deep-merge
 | `columns` | column mappings for HMDB / LIPID MAPS / unified / labels / split |
 
 Everything can also be driven from the command line without editing the config.
+
+**Next:** [Training](./04-training.md)

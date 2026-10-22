@@ -1,6 +1,10 @@
 # Training
 
-[中文](../zh/training.md) | **English** · [Documentation home](../../README.md#en)
+[中文](../zh-CN/04-training.md) | **English** · [Documentation home](../../README.md#english)
+
+**Level:** 2 — Use
+
+**Prerequisites:** [Data pipeline](./03-data-pipeline.md).
 
 Training code lives in `training/` and is **not installed with the wheel**; run it from the repository root. Its output follows the model-directory contract used by inference.
 
@@ -113,3 +117,5 @@ clf = ViceClassifier.from_pretrained("runs/main")
 - All entry points accept a fixed seed; full training is not run in CI;
 - The main model runs on CPU or GPU; vice predictors are AutoGluon tabular models on CPU;
 - Training 426 vice predictors is per-class work; runtime scales with the number of classes and rows.
+
+**Next:** [Models](./05-models.md)

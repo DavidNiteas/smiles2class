@@ -1,6 +1,10 @@
 # 训练
 
-**中文** | [English](../en/training.md) · [返回主页](../../README.md#zh)
+**中文** | [English](../en/04-training.md) · [返回主页](../../README.md#zh-cn)
+
+**层级：** 2 — 使用
+
+**前置条件：** [数据管线](./03-data-pipeline.md)。
 
 训练代码在 `training/`，**不随 wheel 安装**；从仓库根目录运行。训练产物符合推理侧的模型目录契约。
 
@@ -113,3 +117,5 @@ clf = ViceClassifier.from_pretrained("runs/main")
 - 所有入口支持固定 seed；完整训练不在 CI 中运行；
 - 主模型可 CPU/GPU；副模型是 AutoGluon 表格模型，走 CPU；
 - 426 个副模型 predictor 的训练是逐类进行的，耗时与类别数、数据量成正比。
+
+**下一页：** [模型说明](./05-models.md)

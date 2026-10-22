@@ -1,6 +1,10 @@
 # API
 
-**中文** | [English](../en/api.md) · [返回主页](../../README.md#zh)
+**中文** | [English](../en/06-api.md) · [返回主页](../../README.md#zh-cn)
+
+**层级：** 3 — 参考
+
+**前置条件：** [快速开始](./02-quickstart.md)、[模型说明](./05-models.md)。
 
 ## MainClassifier
 
@@ -89,3 +93,5 @@ assert NUM_LABELS == 426
 ```
 
 `LABELS` 的顺序与模型输出列严格对应，**不得重排**。
+
+**下一页：** [CLI 与 FAQ](./07-cli-and-faq.md)

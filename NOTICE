@@ -1,0 +1,23 @@
+smiles2class
+============
+
+smiles2class is a code-only implementation of a SMILES-to-molecular-class
+classifier.
+
+Authors
+-------
+David Niteas <david.ql.d@foxmail.com>
+
+What's shipped
+--------------
+This repository contains code, configuration and documentation only. It does not
+include HMDB or LIPID MAPS raw/derived data, trained model directories or model
+weights. The 426 class names are derived from the HMDB `Alternative Parents`
+field (ClassyFire terms); the data itself is not redistributed.
+
+The molecular encoder is provided by UniMol-Lite (`unimol-lite`), a lightweight
+modified implementation of Uni-Mol. It is not the official Uni-Mol release.
+
+License
+-------
+MIT. See LICENSE.

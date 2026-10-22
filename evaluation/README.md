@@ -11,4 +11,4 @@ python -m evaluation.evaluate --input labels.csv --model main --model-path MODEL
 PYTHONPATH=src:. pytest tests/evaluation/ -q
 ```
 
-AUROC 与 AP 使用原始概率，不用阈值化后的 0/1；零正例类记 `NaN` 并在 macro 中排除。完整口径与报告字段见 `docs/zh/evaluation.md`、`docs/en/evaluation.md`。运行产物放 `reports/`（gitignore）。
+AUROC 与 AP 使用原始概率，不用阈值化后的 0/1；零正例类记 `NaN` 并在 macro 中排除。完整口径与报告字段见 `docs/zh-CN/08-evaluation.md`、`docs/en/08-evaluation.md`。运行产物放 `reports/`（gitignore）。
