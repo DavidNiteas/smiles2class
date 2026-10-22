@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "smiles2class"
-version = "0.1.1"
+version = "0.1.2"
 description = "SMILES → molecular class probabilities (main / vice implementations)"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -21,7 +21,7 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
 dependencies = [
-  "unimol-lite @ git+https://github.com/MetaEngine-Dev/unimol_lite.git@v0.2.1",
+  "unimol-lite @ git+https://github.com/MetaEngine-Dev/unimol_lite.git@v0.2.2",
   "numpy>=1.26,<2",
   "pandas>=2.0",
   "torch>=2.0",

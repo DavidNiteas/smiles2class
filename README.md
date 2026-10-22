@@ -49,10 +49,10 @@ The repository does not include training data or trained model weights. To get p
 Python `>=3.10,<3.12` (3.10 or 3.11) is required.
 
 ```bash
-python -m pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
+python -m pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.2"
 
 # With the vice model
-python -m pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
+python -m pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/smiles2class.git@v0.1.2"
 ```
 
 For development:
@@ -144,10 +144,10 @@ MIT. See [`LICENSE`](./LICENSE). Citation metadata is in [`CITATION.cff`](./CITA
 需要 Python `>=3.10,<3.12`（3.10 或 3.11）。
 
 ```bash
-python -m pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
+python -m pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.2"
 
 # 需要副模型时
-python -m pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
+python -m pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/smiles2class.git@v0.1.2"
 ```
 
 开发安装：

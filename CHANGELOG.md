@@ -7,19 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-10-22
+
 ### Changed
 
-- 文档明确说明：主模型编码器来自 `unimol-lite`（Uni-Mol 的轻量修改版实现），不是官方 Uni-Mol；依赖也不引入官方实现。
-- 文档重构：README 改为中英双语主页，文档索引并入主页，移除 `docs/README.md` 与 `docs/zh|en/index.md`。
-- 项目元数据只保留 `authors`，移除 `maintainers`；README 统一使用“作者”。
-- 文档主页新增“只想要结果？”路径，明确本项目不提供预训练模型、需先用自有数据训练；新增 `agent.md`，覆盖安装、数据获取、清洗、训练与预测。
+- 文档重构为编号式 `docs/{en,zh-CN}/`，新增文档总览与语言索引页；每页带 Level/Prerequisites/Next。
+- README 改为英文优先的双语主页，新增“只想要结果？”路径，明确本项目不提供预训练模型、需先用自有数据训练。
+- 新增 `AGENTS.md`、`AUTHORS`、`NOTICE`、`CITATION.cff` 与 `Makefile`。
 - 修正训练与评测文档中的命令：`training.main.prepare --labels`、`--smiles-column SMILES`。
-- `.gitignore` 忽略 `data/`、`work/`、`runs/`，避免提交数据与训练产物。
-- 文档重构为编号式 `docs/{en,zh-CN}/`，增加语言索引页、每页 Level/Prerequisites/Next 与 `AGENTS.md`。
-- 新增 `AUTHORS`、`NOTICE`、`CITATION.cff`；README 改为英文优先的双语结构。
-- 包元数据改用 `license = { file = "LICENSE" }`，补充 classifiers、项目主页与 sdist 文件清单。
-- 公开文档移除“内部工单/开发笔记”等内部过程表述，改为面向用户的“你需要自备”；移除公开 README 中的 CI 说明。
 - 统一 Python 版本说明为 `>=3.10,<3.12`，并注明与 `unimol-lite` 的组合安装范围一致。
+- 项目元数据只保留 `authors`，移除 `maintainers`；`license` 改为 LICENSE 文件，补充 classifiers、项目主页与 sdist 文件清单。
+- `.gitignore` 忽略 `data/`、`work/`、`runs/`，避免提交数据与训练产物。
+- 依赖升级到 `unimol-lite@v0.2.2`。
 
 ## [0.1.1] - 2026-10-22
 

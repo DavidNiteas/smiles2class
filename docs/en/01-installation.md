@@ -11,18 +11,18 @@
 Main model only:
 
 ```shell
-python -m pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
+python -m pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.2"
 ```
 
 Main and vice model:
 
 ```shell
-python -m pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
+python -m pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/smiles2class.git@v0.1.2"
 ```
 
-With an SSH key configured, `git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.1` can be used instead.
+With an SSH key configured, `git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.2` can be used instead.
 
-This also installs `unimol-lite@v0.2.1`. UniMol-Lite is a lightweight, modified implementation of Uni-Mol, not the official Uni-Mol release.
+This also installs `unimol-lite@v0.2.2`. UniMol-Lite is a lightweight, modified implementation of Uni-Mol, not the official Uni-Mol release.
 
 `smiles2class` and `unimol-lite` both declare `requires-python = ">=3.10,<3.12"`, so a combined install must use Python 3.10 or 3.11.
 

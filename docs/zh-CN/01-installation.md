@@ -11,18 +11,18 @@
 只使用主模型：
 
 ```shell
-python -m pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
+python -m pip install "git+https://github.com/DavidNiteas/smiles2class.git@v0.1.2"
 ```
 
 同时使用副模型：
 
 ```shell
-python -m pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/smiles2class.git@v0.1.1"
+python -m pip install "smiles2class[vice] @ git+https://github.com/DavidNiteas/smiles2class.git@v0.1.2"
 ```
 
-已配置 SSH 密钥时，也可使用 `git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.1`。
+已配置 SSH 密钥时，也可使用 `git+ssh://git@github.com/DavidNiteas/smiles2class.git@v0.1.2`。
 
-安装时会一并安装 `unimol-lite@v0.2.1`。UniMol-Lite 是 Uni-Mol 的轻量修改版实现，不是官方 Uni-Mol。
+安装时会一并安装 `unimol-lite@v0.2.2`。UniMol-Lite 是 Uni-Mol 的轻量修改版实现，不是官方 Uni-Mol。
 
 `smiles2class` 与 `unimol-lite` 都声明 `requires-python = ">=3.10,<3.12"`，组合安装时请使用 Python 3.10 或 3.11。
 
